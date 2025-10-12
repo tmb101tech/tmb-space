@@ -29,7 +29,30 @@ export const Header = () => {
       >
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="text-2xl font-heading font-bold">
-            <span className="soft-glow">TMB</span>
+            <motion.span
+              className="relative inline-block"
+              animate={{
+                backgroundImage: [
+                  'linear-gradient(45deg, hsl(220, 100%, 62%), hsl(280, 100%, 65%))',
+                  'linear-gradient(45deg, hsl(280, 100%, 65%), hsl(35, 100%, 82%))',
+                  'linear-gradient(45deg, hsl(35, 100%, 82%), hsl(160, 100%, 45%))',
+                  'linear-gradient(45deg, hsl(160, 100%, 45%), hsl(220, 100%, 62%))',
+                ],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                textShadow: '0 0 30px rgba(58, 134, 255, 0.5)',
+              }}
+            >
+              TMB
+            </motion.span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

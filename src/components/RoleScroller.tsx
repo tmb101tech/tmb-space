@@ -24,7 +24,7 @@ export const RoleScroller = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center gap-3 text-lg md:text-xl font-body w-full">
+    <div className="flex items-center justify-center gap-2 text-lg md:text-xl font-body w-full">
       <span className="text-muted-foreground text-xl md:text-2xl">I am a</span>
       <div className="relative h-9 md:h-10 min-w-[250px] overflow-hidden flex items-center justify-center">
         <AnimatePresence mode="wait">

@@ -8,8 +8,57 @@ const projects = [
   {
     title: 'E-Commerce Platform',
     category: 'Web Development',
+    subcategory: 'Client',
     description: 'Full stack online store with payment integration and admin dashboard',
     stack: ['React', 'Node.js', 'MySQL', 'Stripe'],
+    type: 'web',
+  },
+  {
+    title: 'Portfolio Website',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'Modern portfolio with animations and dark mode support',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    type: 'web',
+  },
+  {
+    title: 'Task Manager App',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'Productivity app with real-time updates and team collaboration',
+    stack: ['React', 'Firebase', 'Material UI'],
+    type: 'web',
+  },
+  {
+    title: 'Weather Dashboard',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'Interactive weather forecasting with location tracking',
+    stack: ['React', 'OpenWeather API', 'Chart.js'],
+    type: 'web',
+  },
+  {
+    title: 'Blog Platform',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'Content management system with markdown support',
+    stack: ['React', 'Node.js', 'MongoDB', 'Express'],
+    type: 'web',
+  },
+  {
+    title: 'Restaurant Website',
+    category: 'Web Development',
+    subcategory: 'Client',
+    description: 'Responsive restaurant site with online menu and reservations',
+    stack: ['React', 'Node.js', 'MySQL'],
+    type: 'web',
+  },
+  {
+    title: 'Fitness Tracker',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'Track workouts and progress with data visualization',
+    stack: ['React', 'TypeScript', 'Recharts', 'Local Storage'],
     type: 'web',
   },
   {
@@ -54,9 +103,16 @@ const Projects = () => {
             >
               <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-smooth group">
                 <div className="flex-1">
-                  <span className="text-xs font-body text-primary font-semibold uppercase">
-                    {project.category}
-                  </span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-body text-primary font-semibold uppercase">
+                      {project.category}
+                    </span>
+                    {project.subcategory && (
+                      <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
+                        {project.subcategory}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
                     {project.title}
                   </h3>

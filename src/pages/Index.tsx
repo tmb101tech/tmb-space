@@ -235,6 +235,28 @@ const Index = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center glass-effect p-12 rounded-2xl"
+        >
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+            Ready to bring your vision to life?
+          </h2>
+          <p className="text-lg font-body text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Book a session with me today and let us bring your business to life
+          </p>
+          <Link to="/contact">
+            <Button size="lg" className="glow-ring">
+              Get Started <ArrowRight className="ml-2" size={18} />
+            </Button>
+          </Link>
+        </motion.div>
+      </section>
+
+      <section className="container mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center glass-effect p-12 rounded-2xl"
         >
           <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
@@ -258,28 +280,6 @@ const Index = () => {
           <p className="text-xs text-muted-foreground mt-4">
             Contact: mosesbakare48@gmail.com
           </p>
-        </motion.div>
-      </section>
-
-      <section className="container mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center glass-effect p-12 rounded-2xl"
-        >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Ready to bring your vision to life?
-          </h2>
-          <p className="text-lg font-body text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Book a session with me today and let us bring your business to life
-          </p>
-          <Link to="/contact">
-            <Button size="lg" className="glow-ring">
-              Get Started <ArrowRight className="ml-2" size={18} />
-            </Button>
-          </Link>
         </motion.div>
       </section>
     </div>
