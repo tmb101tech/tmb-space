@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +16,9 @@ const Contact = () => {
     email: '',
     phone: '',
     whatsapp: '',
+    brandAbout: '',
+    goals: '',
+    services: '',
     message: '',
   });
 
@@ -43,6 +47,9 @@ const Contact = () => {
       email: '',
       phone: '',
       whatsapp: '',
+      brandAbout: '',
+      goals: '',
+      services: '',
       message: '',
     });
   };
@@ -150,14 +157,62 @@ const Contact = () => {
               </div>
 
               <div>
-                <Label htmlFor="message" className="font-body">Message *</Label>
+                <Label htmlFor="brandAbout" className="font-body">What is your brand about? *</Label>
+                <Textarea
+                  id="brandAbout"
+                  name="brandAbout"
+                  value={formData.brandAbout}
+                  onChange={handleChange}
+                  required
+                  rows={3}
+                  placeholder="Tell us about your brand, business, or project..."
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="goals" className="font-body">What do you want to achieve? *</Label>
+                <Textarea
+                  id="goals"
+                  name="goals"
+                  value={formData.goals}
+                  onChange={handleChange}
+                  required
+                  rows={3}
+                  placeholder="Describe your goals and what success looks like for you..."
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="services" className="font-body">Which of our services do you need? *</Label>
+                <Select
+                  value={formData.services}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, services: value }))}
+                  required
+                >
+                  <SelectTrigger className="mt-2">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Web Development">Web Development</SelectItem>
+                    <SelectItem value="Branding & Design">Branding & Design</SelectItem>
+                    <SelectItem value="Video & Photography">Video & Photography</SelectItem>
+                    <SelectItem value="Creative Consulting">Creative Consulting</SelectItem>
+                    <SelectItem value="Multiple Services">Multiple Services</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="message" className="font-body">Additional Message</Label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
-                  rows={6}
+                  rows={4}
+                  placeholder="Any additional information you'd like to share..."
                   className="mt-2"
                 />
               </div>
