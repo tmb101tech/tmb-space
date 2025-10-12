@@ -107,15 +107,19 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    cursor: none !important;
   }
 
   body {
     @apply bg-background text-foreground font-body;
-    cursor: none;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+  }
+  
+  a, button, input, textarea, select {
+    cursor: none !important;
   }
 }
 

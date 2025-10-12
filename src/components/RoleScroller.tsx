@@ -24,9 +24,9 @@ export const RoleScroller = () => {
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-2 text-lg md:text-xl font-body">
-      <span className="text-muted-foreground">I am a</span>
-      <div className="relative h-8 w-64 overflow-hidden">
+    <div className="flex items-center gap-3 text-lg md:text-xl font-body">
+      <span className="text-muted-foreground text-xl md:text-2xl">I am a</span>
+      <div className="relative h-9 md:h-10 w-64 overflow-hidden flex items-center">
         <AnimatePresence mode="wait">
           <motion.span
             key={currentIndex}
@@ -38,7 +38,7 @@ export const RoleScroller = () => {
               stiffness: 300,
               damping: 30
             }}
-            className="absolute left-0 text-primary font-semibold"
+            className="absolute left-0 text-primary font-semibold text-lg md:text-xl"
           >
             {roles[currentIndex]}
           </motion.span>
