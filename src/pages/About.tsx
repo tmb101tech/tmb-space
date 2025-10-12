@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 import { SkillBar } from '@/components/SkillBar';
+import { Download, Eye } from 'lucide-react';
 
 const skills = [
   { name: 'HTML', percentage: 95 },
@@ -97,6 +99,16 @@ const About = () => {
               and technically. Whether you need a full stack web application, brand design, or video 
               production, I'm here to help bring your vision to life.
             </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button size="lg" variant="outline" className="gap-2">
+                <Eye size={20} />
+                View Resume
+              </Button>
+              <Button size="lg" className="gap-2 glow-ring">
+                <Download size={20} />
+                Download Resume
+              </Button>
+            </div>
           </div>
         </motion.section>
       </div>

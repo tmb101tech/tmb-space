@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Code, Palette, Video } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const projects = [
@@ -87,6 +87,65 @@ const projects = [
 ];
 
 const Projects = () => {
+  const webProjects = projects.filter(p => p.type === 'web');
+  const graphicsProjects = projects.filter(p => p.type === 'graphics');
+  const videoProjects = projects.filter(p => p.type === 'video');
+
+  const renderProjectCard = (project: typeof projects[0], index: number) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true }}
+    >
+      <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-smooth group">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 flex-wrap mb-2">
+            <span className="text-xs font-body text-primary font-semibold uppercase">
+              {project.category}
+            </span>
+            {project.subcategory && (
+              <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
+                {project.subcategory}
+              </span>
+            )}
+            <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
+              {project.year}
+            </span>
+          </div>
+          <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
+            {project.title}
+          </h3>
+          <p className="font-body text-muted-foreground mb-4">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.stack.map((tech) => (
+              <span
+                key={tech}
+                className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-2 mt-4">
+          <Button size="sm" variant="outline" className="flex-1">
+            <ExternalLink className="mr-2" size={14} />
+            View Live
+          </Button>
+          {project.type === 'web' && (
+            <Button size="sm" variant="outline">
+              <Github size={14} />
+            </Button>
+          )}
+        </div>
+      </Card>
+    </motion.div>
+  );
+
   return (
     <div className="min-h-screen py-20 px-4">
       <div className="container mx-auto">
@@ -101,61 +160,52 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-smooth group">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 flex-wrap mb-2">
-                    <span className="text-xs font-body text-primary font-semibold uppercase">
-                      {project.category}
-                    </span>
-                    {project.subcategory && (
-                      <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
-                        {project.subcategory}
-                      </span>
-                    )}
-                    <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                      {project.year}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="font-body text-muted-foreground mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex gap-2 mt-4">
-                  <Button size="sm" variant="outline" className="flex-1">
-                    <ExternalLink className="mr-2" size={14} />
-                    View Live
-                  </Button>
-                  {project.type === 'web' && (
-                    <Button size="sm" variant="outline">
-                      <Github size={14} />
-                    </Button>
-                  )}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
+        {/* Web Development Projects */}
+        <div className="mb-20">
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
+          >
+            <Code className="text-primary" size={32} />
+            Web Development
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {webProjects.map((project, index) => renderProjectCard(project, index))}
+          </div>
+        </div>
+
+        {/* Graphics & Design Projects */}
+        <div className="mb-20">
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
+          >
+            <Palette className="text-primary" size={32} />
+            Graphics & Design
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {graphicsProjects.map((project, index) => renderProjectCard(project, index))}
+          </div>
+        </div>
+
+        {/* Video Production Projects */}
+        <div className="mb-16">
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
+          >
+            <Video className="text-primary" size={32} />
+            Video Production
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {videoProjects.map((project, index) => renderProjectCard(project, index))}
+          </div>
         </div>
 
         <motion.div
