@@ -77,8 +77,8 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {[
-            { icon: Mail, label: 'Email', value: 'hello@tmb.dev' },
-            { icon: Phone, label: 'Phone', value: '+234 XXX XXX XXXX' },
+            { icon: Mail, label: 'Email', value: 'mosesbakare48@gmail.com' },
+            { icon: Phone, label: 'Phone', value: '+234 802 632 2742' },
             { icon: MapPin, label: 'Location', value: 'Nigeria' },
           ].map((item, index) => (
             <motion.div

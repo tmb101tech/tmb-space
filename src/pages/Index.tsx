@@ -9,7 +9,7 @@ import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
 import { ArrowRight, Code, Palette, Video, Mail } from 'lucide-react';
-import heroPortrait from '@/assets/hero-portrait.jpg';
+import heroPortrait from '@/assets/hero-portrait.jpeg';
 
 const Index = () => {
   const skills = [
@@ -67,7 +67,7 @@ const Index = () => {
             <img
               src={heroPortrait}
               alt="Toluwani Moses Bakare"
-              className="w-full h-full rounded-full object-cover border-4 border-primary relative z-10"
+              className="w-full h-full rounded-full object-cover border-4 border-primary relative z-10 transition-transform duration-300 ease-out hover:scale-110 focus:scale-110"
             />
           </motion.div>
 
