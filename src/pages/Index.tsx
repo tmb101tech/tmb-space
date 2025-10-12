@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { RoleScroller } from '@/components/RoleScroller';
+import { TypingName } from '@/components/TypingName';
 import { ArrowRight, Code, Palette, Video } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-24">
         <div className="absolute inset-0 opacity-30">
           {[...Array(20)].map((_, i) => (
             <motion.div
@@ -61,19 +62,19 @@ const Index = () => {
             Meet TMB
           </motion.p>
 
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-5xl md:text-7xl font-heading font-bold"
           >
-            Toluwani Moses Bakare
-          </motion.h1>
+            <TypingName />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
+            className="flex justify-center"
           >
             <RoleScroller />
           </motion.div>
