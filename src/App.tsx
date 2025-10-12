@@ -16,6 +16,23 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const Layout = () => (
+  <div className="min-h-screen w-full flex flex-col">
+    <Header />
+    <main className="flex-1 pt-16">
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </main>
+    <Footer />
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -24,20 +41,7 @@ const App = () => (
         <Sonner />
         <CustomCursor />
         <BrowserRouter>
-          <div className="min-h-screen w-full flex flex-col">
-            <Header />
-            <main className="flex-1 pt-16">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
+          <Layout />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
