@@ -7,6 +7,7 @@ import { RoleScroller } from '@/components/RoleScroller';
 import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
+import TechMarquee from '@/components/TechMarquee';
 import { ArrowRight, Code, Palette, Video, Mail } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
@@ -228,6 +229,9 @@ const Index = () => {
           </Link>
         </motion.div>
       </section>
+
+      {/* Tech Stack Marquee */}
+      <TechMarquee />
 
       <section className="container mx-auto px-4 py-20">
         <motion.div

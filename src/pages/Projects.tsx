@@ -12,6 +12,7 @@ const projects = [
     description: 'Full stack online store with payment integration and admin dashboard',
     stack: ['React', 'Node.js', 'MySQL', 'Stripe'],
     type: 'web',
+    year: '2024',
   },
   {
     title: 'Portfolio Website',
@@ -20,6 +21,7 @@ const projects = [
     description: 'Modern portfolio with animations and dark mode support',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     type: 'web',
+    year: '2024',
   },
   {
     title: 'Task Manager App',
@@ -28,6 +30,7 @@ const projects = [
     description: 'Productivity app with real-time updates and team collaboration',
     stack: ['React', 'Firebase', 'Material UI'],
     type: 'web',
+    year: '2023',
   },
   {
     title: 'Weather Dashboard',
@@ -36,6 +39,7 @@ const projects = [
     description: 'Interactive weather forecasting with location tracking',
     stack: ['React', 'OpenWeather API', 'Chart.js'],
     type: 'web',
+    year: '2023',
   },
   {
     title: 'Blog Platform',
@@ -44,6 +48,7 @@ const projects = [
     description: 'Content management system with markdown support',
     stack: ['React', 'Node.js', 'MongoDB', 'Express'],
     type: 'web',
+    year: '2024',
   },
   {
     title: 'Restaurant Website',
@@ -52,6 +57,7 @@ const projects = [
     description: 'Responsive restaurant site with online menu and reservations',
     stack: ['React', 'Node.js', 'MySQL'],
     type: 'web',
+    year: '2024',
   },
   {
     title: 'Fitness Tracker',
@@ -60,6 +66,7 @@ const projects = [
     description: 'Track workouts and progress with data visualization',
     stack: ['React', 'TypeScript', 'Recharts', 'Local Storage'],
     type: 'web',
+    year: '2023',
   },
   {
     title: 'Church Brand Identity',
@@ -67,6 +74,7 @@ const projects = [
     description: 'Complete branding package including logo, materials, and social media assets',
     stack: ['Photoshop', 'Illustrator', 'Figma'],
     type: 'graphics',
+    year: '2024',
   },
   {
     title: 'Product Launch Video',
@@ -74,6 +82,7 @@ const projects = [
     description: 'High quality promotional video with motion graphics and professional editing',
     stack: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
     type: 'video',
+    year: '2024',
   },
 ];
 
@@ -103,7 +112,7 @@ const Projects = () => {
             >
               <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-smooth group">
                 <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2 flex-wrap mb-2">
                     <span className="text-xs font-body text-primary font-semibold uppercase">
                       {project.category}
                     </span>
@@ -112,6 +121,9 @@ const Projects = () => {
                         {project.subcategory}
                       </span>
                     )}
+                    <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                      {project.year}
+                    </span>
                   </div>
                   <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
                     {project.title}
