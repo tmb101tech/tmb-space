@@ -73,7 +73,7 @@ export const TypingName = () => {
           Moses
         </span>
         {' '}
-        <span className="relative inline-block" style={{ color: 'hsl(35, 100%, 62%)' }}>
+        <span className="relative inline-block" style={{ color: 'hsl(160, 100%, 45%)' }}>
           Bakare
         </span>
       </motion.span>

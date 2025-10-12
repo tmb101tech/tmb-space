@@ -2,14 +2,31 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { RoleScroller } from '@/components/RoleScroller';
 import { TypingName } from '@/components/TypingName';
-import { ArrowRight, Code, Palette, Video } from 'lucide-react';
+import { SkillBar } from '@/components/SkillBar';
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
+import { ArrowRight, Code, Palette, Video, Mail } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 const Index = () => {
+  const skills = [
+    { name: 'HTML', percentage: 95 },
+    { name: 'CSS', percentage: 90 },
+    { name: 'Bootstrap', percentage: 85 },
+    { name: 'JavaScript', percentage: 80 },
+    { name: 'TypeScript', percentage: 85 },
+    { name: 'React', percentage: 45 },
+    { name: 'Node.js', percentage: 80 },
+    { name: 'PHP', percentage: 70 },
+    { name: 'MySQL', percentage: 75 },
+    { name: 'WordPress', percentage: 80 },
+  ];
+
   return (
     <div className="min-h-screen">
+      <FloatingWhatsApp />
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-24">
         <div className="absolute inset-0 opacity-30">
           {[...Array(20)].map((_, i) => (
@@ -160,6 +177,87 @@ const Index = () => {
               View More Projects
             </Button>
           </Link>
+        </motion.div>
+      </section>
+
+      <section className="container mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-heading font-bold mb-4">Stack Proficiencies</h2>
+          <p className="text-muted-foreground font-body mb-2">
+            // Full Stack Developer and Creative Designer
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto space-y-6"
+        >
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <SkillBar name={skill.name} percentage={skill.percentage} />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Link to="/about">
+            <Button size="lg" variant="outline" className="glass-effect">
+              Learn More About Me <ArrowRight className="ml-2" size={18} />
+            </Button>
+          </Link>
+        </motion.div>
+      </section>
+
+      <section className="container mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mx-auto text-center glass-effect p-12 rounded-2xl"
+        >
+          <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
+          <h2 className="text-3xl font-heading font-bold mb-4">
+            Subscribe to News Channel
+          </h2>
+          <p className="text-muted-foreground font-body mb-8">
+            Stay updated with my latest projects, insights, and creative work
+          </p>
+          <form className="flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1"
+              required
+            />
+            <Button type="submit" size="lg" className="glow-ring">
+              Subscribe
+            </Button>
+          </form>
+          <p className="text-xs text-muted-foreground mt-4">
+            Contact: mosesbakare48@gmail.com
+          </p>
         </motion.div>
       </section>
 
