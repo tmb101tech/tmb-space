@@ -27,7 +27,7 @@ const technologies = [
 
 const TechMarquee = () => {
   // Duplicate the array for seamless loop (CSS animation will translate -50%)
-  const duplicatedTechnologies = [...technologies, ...technologies, ...technologies];
+  const duplicatedTechnologies = [...technologies, ...technologies];
 
   // Default duration (seconds) for the marquee animation. Make it easy to tweak.
   const defaultDurationSec = 20;
@@ -50,7 +50,7 @@ const TechMarquee = () => {
         */}
         <div className="overflow-hidden">
           <div
-            className="flex flex-nowrap gap-8 md:gap-12 marquee-items"
+            className="flex w-max gap-8 md:gap-12 marquee-items will-change-transform"
             // Expose the duration via a CSS variable so it's easy to tune or override.
             style={{ animation: `marquee var(--marquee-duration, ${defaultDurationSec}s) linear infinite`, ['--marquee-duration' as any]: `${defaultDurationSec}s` }}
           >
@@ -83,7 +83,7 @@ const TechMarquee = () => {
         <style>{`
           @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); }
           }
           .marquee-items { white-space: nowrap; }
 
