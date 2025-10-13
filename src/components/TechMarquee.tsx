@@ -8,6 +8,8 @@ const technologies = [
   { name: "TailwindCSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
   { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
   { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+  { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai" },
+  { name: "Gemini", icon: "https://cdn.simpleicons.org/googlegemini" },
   { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
@@ -25,7 +27,7 @@ const technologies = [
 
 const TechMarquee = () => {
   // Duplicate the array for seamless loop (CSS animation will translate -50%)
-  const duplicatedTechnologies = [...technologies, ...technologies];
+  const duplicatedTechnologies = [...technologies, ...technologies, ...technologies];
 
   // Default duration (seconds) for the marquee animation. Make it easy to tweak.
   const defaultDurationSec = 20;
@@ -48,7 +50,7 @@ const TechMarquee = () => {
         */}
         <div className="overflow-hidden">
           <div
-            className="flex gap-8 md:gap-12 marquee-items"
+            className="flex flex-nowrap gap-8 md:gap-12 marquee-items"
             // Expose the duration via a CSS variable so it's easy to tune or override.
             style={{ animation: `marquee var(--marquee-duration, ${defaultDurationSec}s) linear infinite`, ['--marquee-duration' as any]: `${defaultDurationSec}s` }}
           >
@@ -57,11 +59,11 @@ const TechMarquee = () => {
                 key={`${tech.name}-${index}`}
                 className="flex flex-col items-center justify-center min-w-[100px] md:min-w-[120px] group flex-shrink-0"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-background rounded-lg p-3 shadow-sm group-hover:shadow-md transition-all group-hover:scale-110">
+                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-card rounded-lg p-3 shadow-sm group-hover:shadow-md transition-all group-hover:scale-110">
                   <img
                     src={tech.icon}
                     alt={tech.name}
-                    className="w-full h-full object-contain"
+                    className={`w-full h-full object-contain ${tech.icon.includes('cdn.simpleicons.org') ? 'dark:invert' : ''}`}
                     loading="lazy"
                     onError={(e) => {
                       const el = e.currentTarget as HTMLImageElement;
@@ -81,7 +83,7 @@ const TechMarquee = () => {
         <style>{`
           @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-100%); }
           }
           .marquee-items { white-space: nowrap; }
 
