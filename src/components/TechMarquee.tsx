@@ -13,13 +13,13 @@ const technologies = [
   { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
   // Figma removed per request
   // Use Simple Icons CDN for some marketing/design tools (more consistent SVGs)
-  { name: "Canva", icon: "https://cdn.simpleicons.org/canva" },
+  { name: "Canva", icon: "https://cdn.simpleicons.org/canva/000000" },
   { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
   { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
   { name: "Premiere Pro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
   { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
   // Added by request
-  { name: "CapCut", icon: "https://cdn.simpleicons.org/capcut" },
+  { name: "CapCut", icon: "https://cdn.simpleicons.org/capcut/000000" },
   { name: "CorelDRAW", icon: "https://cdn.simpleicons.org/coreldraw" },
   { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
 ];
@@ -64,6 +64,11 @@ const TechMarquee = () => {
                     alt={tech.name}
                     className="w-full h-full object-contain"
                     loading="lazy"
+                    onError={(e) => {
+                      const el = e.currentTarget as HTMLImageElement;
+                      el.onerror = null;
+                      el.src = '/placeholder.svg';
+                    }}
                   />
                 </div>
                 <span className="text-xs md:text-sm text-muted-foreground mt-2 font-medium">

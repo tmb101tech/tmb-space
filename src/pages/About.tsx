@@ -60,6 +60,32 @@ const About = () => {
             </div>
           </div>
         </motion.section>
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="glass-effect p-8 rounded-2xl text-center">
+            <h2 className="text-3xl font-heading font-semibold mb-4">Let's Work Together</h2>
+            <p className="font-body text-muted-foreground mb-6">
+              I'm always excited to collaborate on meaningful projects that challenge me creatively 
+              and technically. Whether you need a full stack web application, brand design, or video 
+              production, I'm here to help bring your vision to life.
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button size="lg" variant="outline" className="gap-2">
+                <Eye size={20} />
+                View Resume
+              </Button>
+              <Button size="lg" className="gap-2 glow-ring">
+                <Download size={20} />
+                Download Resume
+              </Button>
+            </div>
+          </div>
+        </motion.section>
 
         <motion.section
           initial={{ opacity: 0, y: 40 }}
@@ -82,32 +108,6 @@ const About = () => {
                   delay={index * 0.1}
                 />
               ))}
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <div className="glass-effect p-8 rounded-2xl text-center">
-            <h2 className="text-3xl font-heading font-semibold mb-4">Let's Work Together</h2>
-            <p className="font-body text-muted-foreground mb-6">
-              I'm always excited to collaborate on meaningful projects that challenge me creatively 
-              and technically. Whether you need a full stack web application, brand design, or video 
-              production, I'm here to help bring your vision to life.
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" variant="outline" className="gap-2">
-                <Eye size={20} />
-                View Resume
-              </Button>
-              <Button size="lg" className="gap-2 glow-ring">
-                <Download size={20} />
-                Download Resume
-              </Button>
             </div>
           </div>
         </motion.section>
