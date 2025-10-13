@@ -18,7 +18,6 @@ const technologies = [
   { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
   { name: "Premiere Pro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
   { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
-  // Added by request
   { name: "CapCut", icon: "https://cdn.simpleicons.org/capcut/000000" },
   { name: "CorelDRAW", icon: "https://cdn.simpleicons.org/coreldraw" },
   { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
@@ -29,7 +28,7 @@ const TechMarquee = () => {
   const duplicatedTechnologies = [...technologies, ...technologies];
 
   // Default duration (seconds) for the marquee animation. Make it easy to tweak.
-  const defaultDurationSec = 36;
+  const defaultDurationSec = 20;
 
   return (
     <section className="py-16 overflow-hidden bg-muted/30">

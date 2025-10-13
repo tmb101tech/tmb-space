@@ -38,9 +38,9 @@ const About = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="glass-effect p-8 rounded-2xl">
-            <h2 className="text-3xl font-heading font-semibold mb-6">My Story</h2>
-            <div className="space-y-4 font-body text-foreground leading-relaxed">
+          <div className="glass-effect p-6 md:p-8 rounded-2xl">
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">My Story</h2>
+            <div className="space-y-5 md:space-y-4 font-body text-foreground leading-relaxed text-sm md:text-base">
               <p>
                 Hello! I'm Toluwani Moses Bakare, a passionate Full Stack Developer and Creative Designer 
                 who believes in the power of technology to transform lives and businesses. My journey in 

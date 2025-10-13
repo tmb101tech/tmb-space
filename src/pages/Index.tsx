@@ -8,7 +8,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
-import { ArrowRight, Code, Palette, Video, Mail } from 'lucide-react';
+import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 
 const Index = () => {
@@ -123,6 +123,22 @@ const Index = () => {
                 Get In Touch
               </Button>
             </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4 }}
+            className="flex gap-4 justify-center flex-wrap"
+          >
+            <Button size="lg" variant="outline" className="gap-2">
+              <Eye size={20} />
+              View Resume
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2">
+              <Download size={20} />
+              Download Resume
+            </Button>
           </motion.div>
         </motion.div>
       </section>
