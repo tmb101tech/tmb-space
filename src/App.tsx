@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CustomCursor } from "@/components/CustomCursor";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Index from "./pages/Index";
@@ -40,6 +41,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <CustomCursor />
+        <FloatingWhatsApp />
         <BrowserRouter>
           <Layout />
         </BrowserRouter>

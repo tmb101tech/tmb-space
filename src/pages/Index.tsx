@@ -27,7 +27,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <FloatingWhatsApp />
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-24">
         <div className="absolute inset-0 opacity-30">
           {[...Array(20)].map((_, i) => (

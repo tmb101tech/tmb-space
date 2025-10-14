@@ -18,14 +18,44 @@ const skills = [
 
 const About = () => {
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto max-w-4xl">
+    <div className="min-h-screen py-20 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 100 + 50,
+              height: Math.random() * 100 + 50,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 
+                ? 'hsl(220, 100%, 62%)' 
+                : i % 3 === 1 
+                  ? 'hsl(280, 100%, 65%)' 
+                  : 'hsl(160, 100%, 45%)',
+              filter: 'blur(60px)',
+            }}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, 30, 0],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+      <div className="container mx-auto max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6">About Me</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>About Me</h1>
           <p className="text-xl font-body text-muted-foreground">
             Discover my journey, skills, and passion for creating impactful digital experiences
           </p>

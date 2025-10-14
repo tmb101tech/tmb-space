@@ -37,14 +37,45 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto">
+    <div className="min-h-screen py-20 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 120 + 60,
+              height: Math.random() * 120 + 60,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 
+                ? 'hsl(220, 100%, 62%)' 
+                : i % 3 === 1 
+                  ? 'hsl(280, 100%, 65%)' 
+                  : 'hsl(160, 100%, 45%)',
+              filter: 'blur(70px)',
+            }}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, 40, 0],
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+      </div>
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6">Services</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Services</h1>
           <p className="text-xl font-body text-muted-foreground max-w-2xl mx-auto">
             Professional services tailored to help your business thrive in the digital world
           </p>
@@ -59,8 +90,8 @@ const Services = () => {
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="glass-effect p-8 h-full hover:glow-ring transition-smooth group">
-                <service.icon className="w-12 h-12 text-primary mb-4 group-hover:animate-float" />
+              <Card className="glass-effect p-8 h-full hover:glow-ring transition-bounce group cursor-pointer">
+                <service.icon className="w-12 h-12 text-primary mb-4 group-hover:animate-float transition-bounce" />
                 <h3 className="text-2xl font-heading font-semibold mb-3">{service.title}</h3>
                 <p className="font-body text-muted-foreground mb-6">{service.description}</p>
                 
@@ -87,7 +118,7 @@ const Services = () => {
                 </div>
 
                 <Link to={`/contact?service=${encodeURIComponent(service.title)}`}>
-                  <Button className="w-full">Request a Quote</Button>
+                  <Button className="w-full glow-ring transition-bounce">Request a Quote</Button>
                 </Link>
               </Card>
             </motion.div>

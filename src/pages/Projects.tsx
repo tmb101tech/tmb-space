@@ -99,7 +99,7 @@ const Projects = () => {
       transition={{ delay: index * 0.1 }}
       viewport={{ once: true }}
     >
-      <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-smooth group">
+      <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-bounce group cursor-pointer">
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap mb-2">
             <span className="text-xs font-body text-primary font-semibold uppercase">
@@ -147,14 +147,44 @@ const Projects = () => {
   );
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto">
+    <div className="min-h-screen py-20 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        {[...Array(18)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 100 + 40,
+              height: Math.random() * 100 + 40,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 
+                ? 'hsl(220, 100%, 62%)' 
+                : i % 3 === 1 
+                  ? 'hsl(280, 100%, 65%)' 
+                  : 'hsl(160, 100%, 45%)',
+              filter: 'blur(60px)',
+            }}
+            animate={{
+              y: [0, -60, 0],
+              x: [0, 50, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6">My Projects</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>My Projects</h1>
           <p className="text-xl font-body text-muted-foreground">
             A showcase of my work across web development, design, and video production
           </p>

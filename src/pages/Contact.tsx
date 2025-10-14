@@ -63,14 +63,45 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto max-w-5xl">
+    <div className="min-h-screen py-20 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        {[...Array(14)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 110 + 50,
+              height: Math.random() * 110 + 50,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 
+                ? 'hsl(220, 100%, 62%)' 
+                : i % 3 === 1 
+                  ? 'hsl(280, 100%, 65%)' 
+                  : 'hsl(160, 100%, 45%)',
+              filter: 'blur(65px)',
+            }}
+            animate={{
+              y: [0, -45, 0],
+              x: [0, 35, 0],
+              scale: [1, 1.15, 1],
+              opacity: [0.25, 0.5, 0.25],
+            }}
+            transition={{
+              duration: 9 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 2.5,
+            }}
+          />
+        ))}
+      </div>
+      <div className="container mx-auto max-w-5xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6">Get In Touch</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Get In Touch</h1>
           <p className="text-xl font-body text-muted-foreground">
             Let's discuss your project and how I can help bring your vision to life
           </p>
@@ -88,8 +119,8 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="glass-effect p-6 text-center">
-                <item.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+              <Card className="glass-effect p-6 text-center hover:scale-105 transition-bounce cursor-pointer">
+                <item.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:animate-float" />
                 <p className="text-sm font-body text-muted-foreground mb-1">{item.label}</p>
                 <p className="font-body font-semibold">{item.value}</p>
               </Card>
