@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { SessionBooking } from '@/components/SessionBooking';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -222,6 +223,15 @@ const Contact = () => {
               </Button>
             </form>
           </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-12"
+        >
+          <SessionBooking />
         </motion.div>
       </div>
     </div>
