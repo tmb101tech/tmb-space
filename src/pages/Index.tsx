@@ -10,6 +10,7 @@ import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
 import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
+import resumePdf from '@/assets/Updated resume.pdf';
 
 const Index = () => {
   const skills = [
@@ -131,13 +132,17 @@ const Index = () => {
             transition={{ delay: 1.4 }}
             className="flex gap-4 justify-center flex-wrap"
           >
-            <Button size="lg" variant="outline" className="gap-2">
-              <Eye size={20} />
-              View Resume
+            <Button asChild size="lg" variant="outline" className="gap-2">
+              <a href={resumePdf} target="_blank" rel="noopener noreferrer">
+                <Eye size={20} />
+                View Resume
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="gap-2">
-              <Download size={20} />
-              Download Resume
+            <Button asChild size="lg" variant="outline" className="gap-2">
+              <a href={resumePdf} download>
+                <Download size={20} />
+                Download Resume
+              </a>
             </Button>
           </motion.div>
         </motion.div>
@@ -170,14 +175,25 @@ const Index = () => {
               transition={{ delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 glass-effect hover:glow-ring transition-smooth group cursor-pointer">
-                <item.icon className="w-12 h-12 text-primary mb-4 group-hover:animate-float" />
-                <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground font-body mb-4">{item.category}</p>
-                <Button variant="ghost" size="sm" className="group-hover:text-primary">
-                  View Project <ArrowRight className="ml-2" size={16} />
-                </Button>
-              </Card>
+              {item.title === 'Web Development' ? (
+                <Link to="/projects">
+                  <Card className="p-6 glass-effect hover:glow-ring transition-smooth group cursor-pointer">
+                    <item.icon className="w-12 h-12 text-primary mb-4 group-hover:animate-float" />
+                    <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground font-body mb-4">{item.category}</p>
+                    <div className="text-sm text-primary font-medium">View Projects</div>
+                  </Card>
+                </Link>
+              ) : (
+                <Card className="p-6 glass-effect transition-smooth group">
+                  <item.icon className="w-12 h-12 text-primary mb-4" />
+                  <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground font-body mb-4">{item.category}</p>
+                  <div className="text-center text-muted-foreground font-body text-sm py-6">
+                    Project display currently unavailable.<br />Please check back later.
+                  </div>
+                </Card>
+              )}
             </motion.div>
           ))}
         </div>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SkillBar } from '@/components/SkillBar';
 import { Download, Eye } from 'lucide-react';
+import resumePdf from '@/assets/Updated resume.pdf';
 
 const skills = [
   { name: 'HTML', percentage: 95 },
@@ -105,13 +106,17 @@ const About = () => {
               production, I'm here to help bring your vision to life.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" variant="outline" className="gap-2">
-                <Eye size={20} />
-                View Resume
+              <Button asChild size="lg" variant="outline" className="gap-2">
+                <a href={resumePdf} target="_blank" rel="noopener noreferrer">
+                  <Eye size={20} />
+                  View Resume
+                </a>
               </Button>
-              <Button size="lg" className="gap-2 glow-ring">
-                <Download size={20} />
-                Download Resume
+              <Button asChild size="lg" className="gap-2 glow-ring">
+                <a href={resumePdf} download>
+                  <Download size={20} />
+                  Download Resume
+                </a>
               </Button>
             </div>
           </div>
