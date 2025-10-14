@@ -6,6 +6,8 @@ const technologies = [
   { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
   { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
   { name: "TailwindCSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Bootstrap", icon: "https://cdn.simpleicons.org/bootstrap/000000" },
+  { name: "jQuery", icon: "https://cdn.simpleicons.org/jquery/000000" },
   { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
   { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
   { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai" },
@@ -17,11 +19,13 @@ const technologies = [
   // Use Simple Icons CDN for some marketing/design tools (more consistent SVGs)
   { name: "Canva", icon: "https://cdn.simpleicons.org/canva/000000" },
   { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
-  { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
-  { name: "Premiere Pro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
-  { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
+  // { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
+  // { name: "Premiere Pro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
+  // { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
   { name: "CapCut", icon: "https://cdn.simpleicons.org/capcut/000000" },
   { name: "CorelDRAW", icon: "https://cdn.simpleicons.org/coreldraw" },
+  { name: "WordPress", icon: "https://cdn.simpleicons.org/wordpress/000000" },
+  { name: "Elementor", icon: "https://cdn.simpleicons.org/elementor/000000" },
   { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
 ];
 

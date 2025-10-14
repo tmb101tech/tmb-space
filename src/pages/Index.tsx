@@ -20,7 +20,8 @@ const Index = () => {
     { name: 'TypeScript', percentage: 85 },
     { name: 'React', percentage: 45 },
     { name: 'Node.js', percentage: 80 },
-    { name: 'PHP', percentage: 70 },
+    { name: 'Next.js', percentage: 85 },
+    { name: 'PHP', percentage: 80 },
     { name: 'MySQL', percentage: 75 },
     { name: 'WordPress', percentage: 80 },
   ];

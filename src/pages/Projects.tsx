@@ -4,69 +4,101 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Code, Palette, Video } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const projects = [
+type Project = {
+  title: string;
+  category: string;
+  subcategory?: string;
+  description: string;
+  stack: string[];
+  type: 'web' | 'graphics' | 'video' | string;
+  year: string;
+  live?: string;
+  github?: string;
+};
+
+const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
+    title: 'edu.ai App',
+    category: 'Web Application',
+    subcategory: 'Startup (In Progress)',
+    description: 'Personalized AI tutoring for preparations of exams like: WAEC, JAMB, NECO, and university courses. Study smarter with AI-powered explanations, practice questions, and analytics.',
+    stack: ['TypeScript', 'CSS', 'PLpgSQL', 'Supabase',],
+    type: 'web',
+    year: '2025',
+    github: 'https://github.com/tmb101tech/edu-ai-app',
+    live: 'https://eduai-app.netlify.app/',
+  },
+  {
+    title: 'My first Landing Page',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'The first landing page I built when I started learning web development.',
+    stack: ['HTML', 'CSS'],
+    type: 'web',
+    year: '2020',
+    github: 'https://github.com/tmb101tech/first-web-project',
+    live: 'https://firstweb-project.netlify.app/',
+  },
+  {
+    title: 'Krea-AI Landing Page Clone',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: "A clone of Krea AI's home page.",
+    stack: ['TypeScript', 'JavaScript', 'CSS', 'Next.js'],
+    type: 'web',
+    year: '2025',
+    github: 'https://github.com/tmb101tech/KreaAI-clone',
+    live: 'https://krea-aiclone.netlify.app/',
+  },
+  {
+    title: 'Weather App',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'A responsive weather app with search functionality, unit conversion and location tracker.',
+    stack: ['HTML', 'JavaScript', 'CSS', 'Open-Meteo API'],
+    type: 'web',
+    year: '2025',
+    github: 'https://github.com/tmb101tech/Weather-app',
+    live: 'https://universal-weather-forcast.netlify.app/',
+  },
+  // {
+  //   title: 'Blog Platform',
+  //   category: 'Web Development',
+  //   subcategory: 'Personal',
+  //   description: 'Content management system with markdown support',
+  //   stack: ['React', 'Node.js', 'MongoDB', 'Express'],
+  //   type: 'web',
+  //   year: '2024',
+  // },
+  // {
+  //   title: 'Restaurant Website',
+  //   category: 'Web Development',
+  //   subcategory: 'Client',
+  //   description: 'Responsive restaurant site with online menu and reservations',
+  //   stack: ['React', 'Node.js', 'MySQL'],
+  //   type: 'web',
+  //   year: '2024',
+  // },
+  {
+    title: 'IBMSSP Business Website',
     category: 'Web Development',
     subcategory: 'Client',
-    description: 'Full stack online store with payment integration and admin dashboard',
-    stack: ['React', 'Node.js', 'MySQL', 'Stripe'],
+    description: 'Showcase services and resources for IBMSSP and basically about the company as well.',
+    stack: ['Wordpress', 'Elementor'],
     type: 'web',
-    year: '2024',
+    year: '2025',
+    live: 'https://ibmssp.org.ng/',
   },
   {
-    title: 'Portfolio Website',
+    title: 'Windows 7 Calculator Clone',
     category: 'Web Development',
     subcategory: 'Personal',
-    description: 'Modern portfolio with animations and dark mode support',
-    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    description: 'My Web version of Windows 7 Calculator. One of my earliest projects.',
+    stack: ['HTMl', 'CSS', 'JavaScript'],
     type: 'web',
-    year: '2024',
-  },
-  {
-    title: 'Task Manager App',
-    category: 'Web Development',
-    subcategory: 'Personal',
-    description: 'Productivity app with real-time updates and team collaboration',
-    stack: ['React', 'Firebase', 'Material UI'],
-    type: 'web',
-    year: '2023',
-  },
-  {
-    title: 'Weather Dashboard',
-    category: 'Web Development',
-    subcategory: 'Personal',
-    description: 'Interactive weather forecasting with location tracking',
-    stack: ['React', 'OpenWeather API', 'Chart.js'],
-    type: 'web',
-    year: '2023',
-  },
-  {
-    title: 'Blog Platform',
-    category: 'Web Development',
-    subcategory: 'Personal',
-    description: 'Content management system with markdown support',
-    stack: ['React', 'Node.js', 'MongoDB', 'Express'],
-    type: 'web',
-    year: '2024',
-  },
-  {
-    title: 'Restaurant Website',
-    category: 'Web Development',
-    subcategory: 'Client',
-    description: 'Responsive restaurant site with online menu and reservations',
-    stack: ['React', 'Node.js', 'MySQL'],
-    type: 'web',
-    year: '2024',
-  },
-  {
-    title: 'Fitness Tracker',
-    category: 'Web Development',
-    subcategory: 'Personal',
-    description: 'Track workouts and progress with data visualization',
-    stack: ['React', 'TypeScript', 'Recharts', 'Local Storage'],
-    type: 'web',
-    year: '2023',
+    year: '2021',
+    github: 'https://github.com/tmb101tech/Win-7-calculator-clone',
+    live: 'https://win-7-calc-clone.netlify.app/',
   },
   {
     title: 'Church Brand Identity',
@@ -132,13 +164,27 @@ const Projects = () => {
           </div>
         </div>
         <div className="flex gap-2 mt-4">
-          <Button size="sm" variant="outline" className="flex-1">
-            <ExternalLink className="mr-2" size={14} />
-            View Live
+          <Button asChild size="sm" variant="outline" className="flex-1">
+            <a
+              href={project.live || '#'}
+              target={project.live ? '_blank' : undefined}
+              rel={project.live ? 'noopener noreferrer' : undefined}
+              aria-label={`View ${project.title} live`}
+            >
+              <ExternalLink className="mr-2" size={14} />
+              View Live
+            </a>
           </Button>
-          {project.type === 'web' && (
-            <Button size="sm" variant="outline">
-              <Github size={14} />
+          {project.type === 'web' && project.github && (
+            <Button asChild size="sm" variant="outline">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title} source on GitHub`}
+              >
+                <Github size={14} />
+              </a>
             </Button>
           )}
         </div>
@@ -217,8 +263,13 @@ const Projects = () => {
             <Palette className="text-primary" size={32} />
             Graphics & Design
           </motion.h2>
+          {/*
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {graphicsProjects.map((project, index) => renderProjectCard(project, index))}
+          </div>
+          */}
+          <div className="text-center text-muted-foreground font-body text-lg py-12">
+            Project display currently unavailable.<br />Please check back later.
           </div>
         </div>
 
@@ -233,8 +284,13 @@ const Projects = () => {
             <Video className="text-primary" size={32} />
             Video Production
           </motion.h2>
+          {/*
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {videoProjects.map((project, index) => renderProjectCard(project, index))}
+          </div>
+          */}
+          <div className="text-center text-muted-foreground font-body text-lg py-12">
+            Project display currently unavailable.<br />Please check back later.
           </div>
         </div>
 
