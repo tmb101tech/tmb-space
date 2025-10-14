@@ -101,6 +101,15 @@ const Contact = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
+          className="mb-12"
+        >
+          <SessionBooking />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
         >
           <Card className="glass-effect p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -223,15 +232,6 @@ const Contact = () => {
               </Button>
             </form>
           </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-12"
-        >
-          <SessionBooking />
         </motion.div>
       </div>
     </div>
