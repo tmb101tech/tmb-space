@@ -39,6 +39,29 @@ export const SessionBooking = () => {
 
   useEffect(() => {
     fetchBookings();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('bookings-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'bookings'
+        },
+        (payload) => {
+          console.log('New booking received:', payload);
+          // Add the new booking to the list
+          setBookedSlots((prev) => [...prev, payload.new as Booking]);
+        }
+      )
+      .subscribe();
+
+    // Cleanup subscription on unmount
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const fetchBookings = async () => {
