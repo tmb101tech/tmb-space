@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { AdminSetup } from '@/components/AdminSetup';
 import { Lock } from 'lucide-react';
 
 const AdminLogin = () => {
@@ -75,6 +76,8 @@ const AdminLogin = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
+        <AdminSetup />
+        
         <Card className="glass-effect p-8">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
