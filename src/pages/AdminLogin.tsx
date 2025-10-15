@@ -10,11 +10,11 @@ import { supabase } from '@/integrations/supabase/client';
 import { Lock } from 'lucide-react';
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const adminEmail = 'admin@tmb.com';
 
   useEffect(() => {
     // Check if user is already logged in
@@ -31,7 +31,7 @@ const AdminLogin = () => {
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: adminEmail,
         password,
       });
 
@@ -80,24 +80,11 @@ const AdminLogin = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
               <Lock className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-3xl font-heading font-bold mb-2">Admin Login</h1>
-            <p className="text-muted-foreground">Enter your credentials to access the dashboard</p>
+            <h1 className="text-3xl font-heading font-bold mb-2">Admin Access</h1>
+            <p className="text-muted-foreground">Enter admin password</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-2"
-                placeholder="admin@example.com"
-              />
-            </div>
-
             <div>
               <Label htmlFor="password">Password</Label>
               <Input
@@ -107,12 +94,13 @@ const AdminLogin = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="mt-2"
-                placeholder="Enter your password"
+                placeholder="Enter admin password"
+                autoFocus
               />
             </div>
 
             <Button type="submit" className="w-full glow-ring" disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Login'}
+              {isLoading ? 'Accessing...' : 'Access Dashboard'}
             </Button>
           </form>
         </Card>
