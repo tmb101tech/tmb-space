@@ -7,15 +7,14 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { AdminSetup } from '@/components/AdminSetup';
 import { Lock } from 'lucide-react';
 
 const AdminLogin = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const adminEmail = 'admin@tmb.com';
 
   useEffect(() => {
     // Check if user is already logged in
@@ -32,7 +31,7 @@ const AdminLogin = () => {
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: adminEmail,
+        email,
         password,
       });
 
@@ -76,18 +75,29 @@ const AdminLogin = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        <AdminSetup />
-        
         <Card className="glass-effect p-8">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
               <Lock className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-3xl font-heading font-bold mb-2">Admin Access</h1>
-            <p className="text-muted-foreground">Enter admin password</p>
+            <h1 className="text-3xl font-heading font-bold mb-2">Admin Login</h1>
+            <p className="text-muted-foreground">Enter your credentials to access the dashboard</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="mt-2"
+                placeholder="admin@example.com"
+              />
+            </div>
+
             <div>
               <Label htmlFor="password">Password</Label>
               <Input
@@ -97,13 +107,12 @@ const AdminLogin = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="mt-2"
-                placeholder="Enter admin password"
-                autoFocus
+                placeholder="Enter your password"
               />
             </div>
 
             <Button type="submit" className="w-full glow-ring" disabled={isLoading}>
-              {isLoading ? 'Accessing...' : 'Access Dashboard'}
+              {isLoading ? 'Logging in...' : 'Login'}
             </Button>
           </form>
         </Card>
