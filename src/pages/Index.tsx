@@ -8,6 +8,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
+import { NewsletterForm } from '@/components/NewsletterForm';
 import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 import resumePdf from '@/assets/Updated resume.pdf';
@@ -302,17 +303,7 @@ const Index = () => {
           <p className="text-muted-foreground font-body mb-8">
             Stay updated with my latest projects, insights, and creative work
           </p>
-          <form className="flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1"
-              required
-            />
-            <Button type="submit" size="lg" className="glow-ring">
-              Subscribe
-            </Button>
-          </form>
+          <NewsletterForm />
           <p className="text-xs text-muted-foreground mt-4">
             Contact: mosesbakare48@gmail.com
           </p>
