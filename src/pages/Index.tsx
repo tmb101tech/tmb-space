@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { RoleScroller } from '@/components/RoleScroller';
 import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
 import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 import resumePdf from '@/assets/Updated resume.pdf';
 
 const Index = () => {
+  const { toast } = useToast();
   const skills = [
     { name: 'HTML', percentage: 95 },
     { name: 'CSS', percentage: 90 },
@@ -302,12 +305,30 @@ const Index = () => {
           <p className="text-muted-foreground font-body mb-8">
             Stay updated with my latest projects, insights, and creative work
           </p>
-          <form className="flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col sm:flex-row gap-4" onSubmit={async (e) => {
+            e.preventDefault();
+            const email = (e.currentTarget.elements[0] as HTMLInputElement).value?.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              toast({ title: 'Invalid email', description: 'Please enter a valid email address', variant: 'destructive' });
+              return;
+            }
+
+            try {
+              const { data, error } = await (supabase as any).from('subscribers').insert([{ email }]).select();
+              if (error) throw error;
+              toast({ title: 'Subscribed', description: 'Thanks — you have been added to the list!' });
+              (e.currentTarget.elements[0] as HTMLInputElement).value = '';
+            } catch (err: any) {
+              console.error(err);
+              toast({ title: 'Subscription failed', description: err.message || 'Please try again later', variant: 'destructive' });
+            }
+          }}>
             <Input
               type="email"
               placeholder="Enter your email"
               className="flex-1"
               required
+              name="newsletterEmail"
             />
             <Button type="submit" size="lg" className="glow-ring">
               Subscribe
