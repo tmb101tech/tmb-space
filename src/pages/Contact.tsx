@@ -9,6 +9,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { SessionBooking } from '@/components/SessionBooking';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -23,7 +24,7 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.whatsapp) {
@@ -35,24 +36,51 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for reaching out. I will get back to you soon.',
-    });
+    try {
+      // Submit to database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          whatsapp: formData.whatsapp,
+          brand_about: formData.brandAbout,
+          goals: formData.goals,
+          services: formData.services,
+          message: formData.message,
+        }]);
 
-    const whatsappUrl = `https://wa.me/${formData.whatsapp.replace(/\D/g, '')}`;
-    window.open(whatsappUrl, '_blank');
+      if (error) throw error;
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      whatsapp: '',
-      brandAbout: '',
-      goals: '',
-      services: '',
-      message: '',
-    });
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you for reaching out. I will get back to you soon.',
+      });
+
+      // Open WhatsApp
+      const whatsappUrl = `https://wa.me/${formData.whatsapp.replace(/\D/g, '')}`;
+      window.open(whatsappUrl, '_blank');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        whatsapp: '',
+        brandAbout: '',
+        goals: '',
+        services: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to submit form. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

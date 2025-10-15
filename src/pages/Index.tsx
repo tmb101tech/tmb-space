@@ -9,6 +9,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
+import { NewsletterForm } from '@/components/NewsletterForm';
 import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
@@ -305,6 +306,7 @@ const Index = () => {
           <p className="text-muted-foreground font-body mb-8">
             Stay updated with my latest projects, insights, and creative work
           </p>
+<<<<<<< HEAD
           <form className="flex flex-col sm:flex-row gap-4" onSubmit={async (e) => {
             e.preventDefault();
             const email = (e.currentTarget.elements[0] as HTMLInputElement).value?.trim();
@@ -334,6 +336,9 @@ const Index = () => {
               Subscribe
             </Button>
           </form>
+=======
+          <NewsletterForm />
+>>>>>>> b9eeb63342049b7522c788c0cba300a89ab001c5
           <p className="text-xs text-muted-foreground mt-4">
             Contact: mosesbakare48@gmail.com
           </p>
