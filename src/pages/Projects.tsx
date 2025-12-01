@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Code, Palette, Video } from 'lucide-react';
+import { ExternalLink, Github, Code } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type Project = {
@@ -232,67 +232,16 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>My Projects</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Web Projects</h1>
           <p className="text-xl font-body text-muted-foreground">
-            A showcase of my work across web development, design, and video production
+            A collection of web applications and websites showcasing modern design and functionality
           </p>
         </motion.div>
 
         {/* Web Development Projects */}
         <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
-          >
-            <Code className="text-primary" size={32} />
-            Web Development
-          </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {webProjects.map((project, index) => renderProjectCard(project, index))}
-          </div>
-        </div>
-
-        {/* Graphics & Design Projects */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
-          >
-            <Palette className="text-primary" size={32} />
-            Graphics & Design
-          </motion.h2>
-          {/*
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {graphicsProjects.map((project, index) => renderProjectCard(project, index))}
-          </div>
-          */}
-          <div className="text-center text-muted-foreground font-body text-lg py-12">
-            Project display currently unavailable.<br />Please check back later.
-          </div>
-        </div>
-
-        {/* Video Production Projects */}
-        <div className="mb-16">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-heading font-bold mb-8 flex items-center gap-3"
-          >
-            <Video className="text-primary" size={32} />
-            Video Production
-          </motion.h2>
-          {/*
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videoProjects.map((project, index) => renderProjectCard(project, index))}
-          </div>
-          */}
-          <div className="text-center text-muted-foreground font-body text-lg py-12">
-            Project display currently unavailable.<br />Please check back later.
           </div>
         </div>
 
