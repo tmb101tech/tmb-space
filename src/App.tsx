@@ -8,15 +8,32 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import UnderConstruction from "./pages/UnderConstruction";
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const Layout = () => (
   <div className="min-h-screen w-full">
+    <Header />
+    <FloatingWhatsApp />
     <Routes>
-      <Route path="*" element={<UnderConstruction />} />
+      <Route path="/" element={<Index />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
+    <Footer />
   </div>
 );
 

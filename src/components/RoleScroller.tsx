@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react';
 const roles = [
   'Christian',
   'Full Stack Developer',
-  'Brand Designer',
-  'Graphics Designer',
-  'Videographer',
-  'Photographer',
-  'Video Editor',
-  'Photo Editor',
+  'Web Designer',
+  'UI/UX Designer',
+  'Frontend Specialist',
+  'Backend Developer',
   'AI Enthusiast',
 ];
 

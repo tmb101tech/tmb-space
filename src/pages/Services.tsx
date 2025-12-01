@@ -1,37 +1,37 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Palette, Video, Lightbulb } from 'lucide-react';
+import { Code, Palette, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
   {
     icon: Code,
-    title: 'Web Development',
-    description: 'Custom websites and web applications built with modern technologies',
-    deliverables: ['Responsive Design', 'Database Integration', 'API Development', 'CMS Setup'],
-    timeline: '2-6 weeks',
+    title: 'Custom Web Development',
+    description: 'Full-stack web applications built with cutting-edge technologies and best practices',
+    deliverables: ['Responsive Design', 'Database Architecture', 'API Development', 'Performance Optimization'],
+    timeline: '3-8 weeks',
   },
   {
     icon: Palette,
-    title: 'Branding & Design',
-    description: 'Professional brand identity and graphic design services',
-    deliverables: ['Logo Design', 'Brand Guidelines', 'Marketing Materials', 'Social Media Assets'],
-    timeline: '1-3 weeks',
-  },
-  {
-    icon: Video,
-    title: 'Video & Photography',
-    description: 'High quality video production and professional photography',
-    deliverables: ['Video Editing', 'Motion Graphics', 'Product Photography', 'Event Coverage'],
-    timeline: '1-4 weeks',
+    title: 'UI/UX Design',
+    description: 'Beautiful, intuitive interfaces that prioritize user experience and modern aesthetics',
+    deliverables: ['Wireframing', 'Interactive Prototypes', 'Design Systems', 'User Testing'],
+    timeline: '2-4 weeks',
   },
   {
     icon: Lightbulb,
-    title: 'Creative Consulting',
-    description: 'Strategic guidance for your digital presence and creative projects',
-    deliverables: ['Strategy Sessions', 'Technical Consultation', 'Project Planning', 'Team Training'],
-    timeline: 'Flexible',
+    title: 'Web Strategy & Consulting',
+    description: 'Strategic guidance to optimize your digital presence and technical architecture',
+    deliverables: ['Technical Audits', 'Performance Analysis', 'SEO Strategy', 'Architecture Planning'],
+    timeline: '1-2 weeks',
+  },
+  {
+    icon: Code,
+    title: 'E-Commerce Solutions',
+    description: 'Complete online store setup with payment integration and inventory management',
+    deliverables: ['Store Setup', 'Payment Gateway', 'Product Management', 'Analytics Dashboard'],
+    timeline: '4-8 weeks',
   },
 ];
 
@@ -75,9 +75,9 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Services</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Web Design Services</h1>
           <p className="text-xl font-body text-muted-foreground max-w-2xl mx-auto">
-            Professional services tailored to help your business thrive in the digital world
+            Professional web design and development services that bring your digital vision to life
           </p>
         </motion.div>
 

@@ -9,7 +9,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
-import { ArrowRight, Code, Palette, Video, Mail, Download, Eye } from 'lucide-react';
+import { ArrowRight, Code, Palette, Mail, Download, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 import resumePdf from '@/assets/Updated resume.pdf';
@@ -159,17 +159,16 @@ const Index = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-heading font-bold mb-4">Featured Work</h2>
+          <h2 className="text-4xl font-heading font-bold mb-4">Professional Web Solutions</h2>
           <p className="text-muted-foreground font-body">
-            A glimpse into my creative and technical projects
+            Modern web design and development showcasing technical expertise
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-8 mb-8 max-w-4xl mx-auto">
           {[
-            { icon: Code, title: 'Web Development', category: 'Full Stack' },
-            { icon: Palette, title: 'Brand Design', category: 'Graphics' },
-            { icon: Video, title: 'Video Production', category: 'Creative' },
+            { icon: Code, title: 'Web Development', category: 'Full Stack', link: '/projects' },
+            { icon: Palette, title: 'UI/UX Design', category: 'Modern Interfaces', link: '/services' },
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -178,25 +177,16 @@ const Index = () => {
               transition={{ delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              {item.title === 'Web Development' ? (
-                <Link to="/projects">
-                  <Card className="p-6 glass-effect hover:glow-ring transition-smooth group cursor-pointer">
-                    <item.icon className="w-12 h-12 text-primary mb-4 group-hover:animate-float" />
-                    <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground font-body mb-4">{item.category}</p>
-                    <div className="text-sm text-primary font-medium">View Projects</div>
-                  </Card>
-                </Link>
-              ) : (
-                <Card className="p-6 glass-effect transition-smooth group">
-                  <item.icon className="w-12 h-12 text-primary mb-4" />
-                  <h3 className="text-xl font-heading font-semibold mb-2">{item.title}</h3>
+              <Link to={item.link}>
+                <Card className="p-8 glass-effect hover:glow-ring transition-smooth group cursor-pointer">
+                  <item.icon className="w-14 h-14 text-primary mb-4 group-hover:animate-float" />
+                  <h3 className="text-2xl font-heading font-semibold mb-2">{item.title}</h3>
                   <p className="text-sm text-muted-foreground font-body mb-4">{item.category}</p>
-                  <div className="text-center text-muted-foreground font-body text-sm py-6">
-                    Project display currently unavailable.<br />Please check back later.
+                  <div className="text-sm text-primary font-medium">
+                    {item.title === 'Web Development' ? 'View Projects' : 'Explore Services'}
                   </div>
                 </Card>
-              )}
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -210,7 +200,7 @@ const Index = () => {
         >
           <Link to="/projects">
             <Button size="lg" variant="outline" className="glass-effect">
-              View More Projects
+              View All Projects
             </Button>
           </Link>
         </motion.div>
