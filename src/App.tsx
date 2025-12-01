@@ -8,33 +8,15 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
-import NotFound from "./pages/NotFound";
+import UnderConstruction from "./pages/UnderConstruction";
 
 const queryClient = new QueryClient();
 
 const Layout = () => (
-  <div className="min-h-screen w-full flex flex-col">
-    <Header />
-    <main className="flex-1 pt-16">
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </main>
-    <Footer />
+  <div className="min-h-screen w-full">
+    <Routes>
+      <Route path="*" element={<UnderConstruction />} />
+    </Routes>
   </div>
 );
 
@@ -45,7 +27,6 @@ const App = () => (
         <Toaster />
         <Sonner />
         <CustomCursor />
-        <FloatingWhatsApp />
         <BrowserRouter>
           <Layout />
         </BrowserRouter>
