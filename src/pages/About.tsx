@@ -73,20 +73,26 @@ const About = () => {
             <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">My Story</h2>
             <div className="space-y-5 md:space-y-4 font-body text-foreground leading-relaxed text-sm md:text-base">
               <p>
-                Hello! I'm Toluwani Moses Bakare, a passionate Full Stack Developer and Creative Designer 
-                who believes in the power of technology to transform lives and businesses. My journey in 
-                the digital world began with a curiosity for how things work and a desire to create 
-                solutions that make a difference.
+                Hello! I'm Toluwani Moses Bakare, a passionate Full Stack Developer and Brand Designer 
+                based in Lagos, Nigeria. I help businesses and individuals stand out online by creating 
+                custom websites and brand identities that establish your digital presence and drive growth.
               </p>
               <p>
-                As a Christian, my faith guides my work ethic and inspires me to approach every project 
-                with integrity, excellence, and a servant's heart. I believe that technology, when used 
-                purposefully, can be a powerful tool for positive impact.
+                Whether you're a startup looking to build your business identity online or an established 
+                company wanting to grow on digital platforms, I provide tailored solutions that help your 
+                business stand out in today's competitive digital landscape. From simple landing pages to 
+                complex e-commerce platforms, I build websites that work for your business strategy.
               </p>
               <p>
-                Beyond code and design, I'm deeply passionate about visual storytelling through photography 
-                and videography. This creative perspective enhances my technical work, allowing me to build 
-                not just functional solutions, but beautiful, engaging experiences that resonate with users.
+                As a Christian and student at Lagos University of Science and Technology, my faith guides 
+                my work ethic and inspires me to approach every project with integrity, excellence, and a 
+                servant's heart. I believe that technology, when used purposefully, can be a powerful tool 
+                for positive impact and business growth.
+              </p>
+              <p>
+                My services help businesses establish their online identity through professional web 
+                development, strategic brand design, and effective social media management. Let's work 
+                together to help your business stand out and thrive online!
               </p>
             </div>
           </div>
@@ -99,11 +105,11 @@ const About = () => {
           className="mb-16"
         >
           <div className="glass-effect p-8 rounded-2xl text-center">
-            <h2 className="text-3xl font-heading font-semibold mb-4">Let's Work Together</h2>
+            <h2 className="text-3xl font-heading font-semibold mb-4">Ready to Build Your Business Online?</h2>
             <p className="font-body text-muted-foreground mb-6">
-              I'm always excited to collaborate on meaningful projects that challenge me creatively 
-              and technically. Whether you need a full stack web application, brand design, or video 
-              production, I'm here to help bring your vision to life.
+              I'm excited to help your business stand out online! Whether you need a website to establish 
+              your business identity, brand design to differentiate yourself, or social media management 
+              to grow your digital presence - let's collaborate and bring your vision to life.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild size="lg" variant="outline" className="gap-2">
