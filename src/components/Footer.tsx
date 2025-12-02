@@ -66,7 +66,7 @@ export const Footer = () => {
           
           <div className="text-center">
             <p className="text-sm font-body mb-2">
-              <span className="text-primary">✳</span> TMB | Tech + Faith + Growth
+              TMB | Christian • Developer • Designer
             </p>
             <p className="text-xs text-muted-foreground font-body">
               © {new Date().getFullYear()} Toluwani Moses Bakare. All rights reserved.
