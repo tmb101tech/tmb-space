@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const roles = [
+  'Christian',
   'Full Stack Developer',
   'Web Designer',
   'UI/UX Designer',
