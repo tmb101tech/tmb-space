@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Palette, Lightbulb } from 'lucide-react';
+import { Code, Palette, Lightbulb, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -14,10 +14,17 @@ const services = [
   },
   {
     icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that prioritize user experience and modern aesthetics',
-    deliverables: ['Wireframing', 'Interactive Prototypes', 'Design Systems', 'User Testing'],
+    title: 'Branding & Identity',
+    description: 'Complete brand identity design including logos, color schemes, and brand guidelines',
+    deliverables: ['Logo Design', 'Color Palette', 'Brand Guidelines', 'Typography System'],
     timeline: '2-4 weeks',
+  },
+  {
+    icon: Instagram,
+    title: 'Social Media Management',
+    description: 'Strategic social media management to grow your online presence and engagement',
+    deliverables: ['Content Strategy', 'Post Scheduling', 'Analytics Reporting', 'Community Management'],
+    timeline: 'Ongoing',
   },
   {
     icon: Lightbulb,
