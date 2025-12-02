@@ -14,6 +14,7 @@ type Project = {
   year: string;
   live?: string;
   github?: string;
+  image?: string;
 };
 
 const projects: Project[] = [
@@ -133,62 +134,80 @@ const Projects = () => {
       transition={{ delay: index * 0.1 }}
       viewport={{ once: true }}
     >
-      <Card className="glass-effect p-6 h-full flex flex-col hover:glow-ring transition-bounce group cursor-pointer">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 flex-wrap mb-2">
-            <span className="text-xs font-body text-primary font-semibold uppercase">
-              {project.category}
-            </span>
-            {project.subcategory && (
-              <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
-                {project.subcategory}
-              </span>
-            )}
-            <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
-              {project.year}
-            </span>
-          </div>
-          <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
-            {project.title}
-          </h3>
-          <p className="font-body text-muted-foreground mb-4">
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.stack.map((tech) => (
-              <span
-                key={tech}
-                className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+      <Card className="glass-effect overflow-hidden h-full flex flex-col hover:glow-ring transition-bounce group cursor-pointer">
+        {/* Preview Image */}
+        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20">
+          {project.image ? (
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <Code className="w-16 h-16 text-primary/40" />
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
-        <div className="flex gap-2 mt-4">
-          <Button asChild size="sm" variant="outline" className="flex-1">
-            <a
-              href={project.live || '#'}
-              target={project.live ? '_blank' : undefined}
-              rel={project.live ? 'noopener noreferrer' : undefined}
-              aria-label={`View ${project.title} live`}
-            >
-              <ExternalLink className="mr-2" size={14} />
-              View Live
-            </a>
-          </Button>
-          {project.type === 'web' && project.github && (
-            <Button asChild size="sm" variant="outline">
+        
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 flex-wrap mb-2">
+              <span className="text-xs font-body text-primary font-semibold uppercase">
+                {project.category}
+              </span>
+              {project.subcategory && (
+                <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
+                  {project.subcategory}
+                </span>
+              )}
+              <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                {project.year}
+              </span>
+            </div>
+            <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
+              {project.title}
+            </h3>
+            <p className="font-body text-muted-foreground mb-4">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-2 mt-4">
+            <Button asChild size="sm" variant="outline" className="flex-1">
               <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${project.title} source on GitHub`}
+                href={project.live || '#'}
+                target={project.live ? '_blank' : undefined}
+                rel={project.live ? 'noopener noreferrer' : undefined}
+                aria-label={`View ${project.title} live`}
               >
-                <Github size={14} />
+                <ExternalLink className="mr-2" size={14} />
+                View Live
               </a>
             </Button>
-          )}
+            {project.type === 'web' && project.github && (
+              <Button asChild size="sm" variant="outline">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${project.title} source on GitHub`}
+                >
+                  <Github size={14} />
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
       </Card>
     </motion.div>

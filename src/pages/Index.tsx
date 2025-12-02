@@ -9,7 +9,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
-import { ArrowRight, Code, Palette, Mail, Download, Eye } from 'lucide-react';
+import { ArrowRight, Code, Instagram, Mail, Download, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 import resumePdf from '@/assets/Updated resume.pdf';
@@ -168,7 +168,7 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-8 max-w-4xl mx-auto">
           {[
             { icon: Code, title: 'Web Development', category: 'Full Stack', link: '/projects' },
-            { icon: Palette, title: 'UI/UX Design', category: 'Modern Interfaces', link: '/services' },
+            { icon: Instagram, title: 'Brand & Social Media', category: 'Digital Marketing', link: '/services' },
           ].map((item, index) => (
             <motion.div
               key={index}
