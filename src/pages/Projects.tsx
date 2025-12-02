@@ -30,17 +30,6 @@ const projects: Project[] = [
     live: 'https://eduai-app.netlify.app/',
   },
   {
-    title: 'My first Landing Page',
-    category: 'Web Development',
-    subcategory: 'Personal',
-    description: 'The first landing page I built when I started learning web development.',
-    stack: ['HTML', 'CSS'],
-    type: 'web',
-    year: '2020',
-    github: 'https://github.com/tmb101tech/first-web-project',
-    live: 'https://firstweb-project.netlify.app/',
-  },
-  {
     title: 'Krea-AI Landing Page Clone',
     category: 'Web Development',
     subcategory: 'Personal',
@@ -63,24 +52,26 @@ const projects: Project[] = [
     live: 'https://universal-weather-forcast.netlify.app/',
   },
   {
-    title: 'Wips Certificate Generator',
+    title: 'Certificate Generator',
     category: 'Web Development',
     subcategory: 'Client',
-    description: 'Content management system with markdown support',
-    stack: ['Next.js', 'TailwindCSS'],
+    description: 'Automatic Certificate Generator for WIPS using names inputed by the user.',
+    stack: ['Next.js', 'TailwindCSS', 'Canva'],
     type: 'web',
     year: '2024',
     github: 'https://github.com/tmb101tech/WIPS-Certificate-Generator',
     live: 'https://wips-certificate-generator.vercel.app/',
   },
   {
-    title: 'Restaurant Website',
+    title: 'OAK Global Business Website',
     category: 'Web Development',
     subcategory: 'Client',
-    description: 'Responsive restaurant site with online menu and reservations',
-    stack: ['React', 'Node.js', 'MySQL'],
+    description: 'Responsive website for OAK Global International Solutions Ltd, showcasing their services and contact information.',
+    stack: ['React', 'TailwindCSS', 'Supabase'],
     type: 'web',
     year: '2024',
+    github: 'https://github.com/tmb101tech/oak-global',
+    live: 'https://oak-gloabal.com.ng/',
   },
   {
     title: 'IBMSSP Business Website',
@@ -91,6 +82,17 @@ const projects: Project[] = [
     type: 'web',
     year: '2025',
     live: 'https://ibmssp.org.ng/',
+  },
+  {
+    title: 'My first Landing Page',
+    category: 'Web Development',
+    subcategory: 'Personal',
+    description: 'The first landing page I built when I started learning web development.',
+    stack: ['HTML', 'CSS'],
+    type: 'web',
+    year: '2020',
+    github: 'https://github.com/tmb101tech/first-web-project',
+    live: 'https://firstweb-project.netlify.app/',
   },
   {
     title: 'Windows 7 Calculator Clone',
@@ -251,9 +253,9 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Web Projects</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>My Projects</h1>
           <p className="text-xl font-body text-muted-foreground">
-            A collection of web applications and websites showcasing modern design and functionality
+            Here are some web applications and websites I built showcasing modern design and functionality either for fun or other clients
           </p>
         </motion.div>
 

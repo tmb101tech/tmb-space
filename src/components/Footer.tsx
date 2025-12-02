@@ -29,7 +29,8 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="p-2 md:p-3 rounded-full border border-border hover:border-primary hover:glow-ring transition-smooth"
             >
-              <Twitter size={18} className="md:w-5 md:h-5" />
+              {/* Use Simple Icons CDN for X logo (black) */}
+              <img src="https://cdn.simpleicons.org/X/000000" alt="X" className="w-[18px] h-[18px] md:w-5 md:h-5 dark:invert" />
             </a>
             <a
               href="https://instagram.com/official.tmb01"

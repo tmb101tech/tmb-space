@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: "Are you still a student?",
-    answer: "Yes, I'm currently a student at Lagos University of Science and Technology (LASUTH). I balance my studies with my passion for web development and design, bringing fresh perspectives and cutting-edge knowledge to every project I undertake."
+    answer: "Yes, I'm currently a student at Lagos University of Science and Technology (LASUTECH). I balance my studies with my passion for web development and design, bringing fresh perspectives and cutting-edge knowledge to every project I undertake."
   },
   {
     question: "How long does it take to build a website?",
@@ -39,6 +39,10 @@ const faqs = [
   {
     question: "Do you work with small businesses and startups?",
     answer: "Absolutely! I'm passionate about helping businesses of all sizes establish their online identity. Whether you're a startup looking to make your first digital impression or an established business wanting to upgrade your online presence, I provide tailored solutions that fit your needs and budget to help your business stand out and grow."
+  },
+  {
+    question: "Do you work alone or with a team?",
+    answer: "I primarily work independently, which allows me to maintain a personal touch and direct communication with my clients. However, for larger projects that require specialized skills, I am open to collaborating with a trusted network of professionals to ensure the best results for your business."
   }
 ];
 

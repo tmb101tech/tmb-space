@@ -82,9 +82,9 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>Web Design Services</h1>
+          <h1 className="text-5xl font-heading font-bold mb-6 gradient-text animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>My Services</h1>
           <p className="text-xl font-body text-muted-foreground max-w-2xl mx-auto">
-            Professional web design and development services that bring your digital vision to life
+            Professional services that bring your digital vision to life through innovative design and development.
           </p>
         </motion.div>
 

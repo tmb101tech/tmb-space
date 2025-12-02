@@ -11,11 +11,12 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/services', label: 'Services' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/', label: '< Home >' },
+    { path: '/about', label: '< About >' },
+    { path: '/projects', label: '< Projects >' },
+    { path: '/services', label: '< Services >' },
+    { path: '/reviews', label: '< Reviews >' },
+    { path: '/contact', label: '< Contact >' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -51,7 +52,7 @@ export const Header = () => {
                 textShadow: '0 0 30px rgba(58, 134, 255, 0.5)',
               }}
             >
-              TMB
+             {"{ TMB }"}
             </motion.span>
           </Link>
 
