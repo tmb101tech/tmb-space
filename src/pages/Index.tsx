@@ -9,6 +9,7 @@ import { TypingName } from '@/components/TypingName';
 import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
+import { FAQ } from '@/components/FAQ';
 import { ArrowRight, Code, Instagram, Mail, Download, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
@@ -107,8 +108,9 @@ const Index = () => {
             transition={{ delay: 1 }}
             className="text-lg font-body text-muted-foreground max-w-2xl mx-auto"
           >
-            Passionate about building exceptional digital experiences that merge technology, 
-            creativity, and purpose. Let's create something amazing together.
+            Want your business to stand out online? I build custom websites and create brand identities 
+            that help businesses and individuals grow their digital presence. Let's establish your online 
+            identity and build your business strategy together.
           </motion.p>
 
           <motion.div
@@ -159,9 +161,9 @@ const Index = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-heading font-bold mb-4">Professional Web Solutions</h2>
+          <h2 className="text-4xl font-heading font-bold mb-4">Help Your Business Stand Out Online</h2>
           <p className="text-muted-foreground font-body">
-            Modern web design and development showcasing technical expertise
+            Professional web solutions and brand identity services to grow your business presence on digital platforms
           </p>
         </motion.div>
 
@@ -267,10 +269,12 @@ const Index = () => {
           className="text-center glass-effect p-12 rounded-2xl"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Ready to bring your vision to life?
+            Ready to Help Your Business Stand Out?
           </h2>
           <p className="text-lg font-body text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Book a session with me today and let us bring your business to life
+            Whether you need a website to establish your business identity online or want to grow 
+            your presence on digital platforms - let's build your business strategy together and 
+            bring your vision to life.
           </p>
           <Link to="/contact">
             <Button size="lg" className="glow-ring">
@@ -279,6 +283,9 @@ const Index = () => {
           </Link>
         </motion.div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       <section className="container mx-auto px-4 py-20">
         <motion.div
@@ -290,10 +297,10 @@ const Index = () => {
         >
           <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
           <h2 className="text-3xl font-heading font-bold mb-4">
-            Subscribe to News Channel
+            Join My Business Growth Newsletter
           </h2>
           <p className="text-muted-foreground font-body mb-8">
-            Stay updated with my latest projects, insights, and creative work
+            Get tips, insights, and strategies to help your business stand out online. Stay updated with the latest in web development and digital branding.
           </p>
           <form
             className="flex flex-col sm:flex-row gap-4"
