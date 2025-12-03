@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Sparkles } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 
 interface FlipCardProps {
   frontContent?: React.ReactNode;
@@ -30,11 +30,8 @@ export const FlipCard = ({ frontContent, backImage, alt }: FlipCardProps) => {
         >
           {frontContent || (
             <>
-              <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary via-purple-500 to-teal-400 flex items-center justify-center animate-pulse">
-                  <Code2 className="w-10 h-10 text-white" />
-                </div>
-                <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-primary animate-bounce" />
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary via-purple-500 to-teal-400 flex items-center justify-center animate-pulse">
+                <Code2 className="w-10 h-10 text-white" />
               </div>
               <div className="text-center">
                 <p className="font-heading font-bold text-xl gradient-text">TMB</p>
