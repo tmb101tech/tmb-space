@@ -103,6 +103,20 @@ export default {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        // Add this new keyframe for slow spin
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        // Add keyframe for flip animation
+        "flip": {
+          from: { transform: "rotateY(0deg)" },
+          to: { transform: "rotateY(180deg)" },
+        },
+        "flip-reverse": {
+          from: { transform: "rotateY(180deg)" },
+          to: { transform: "rotateY(0deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,6 +127,49 @@ export default {
         "slide-up": "slide-up 0.6s ease-out",
         "scale-up": "scale-up 0.4s ease-out",
         "gradient-shift": "gradient-shift 3s ease infinite",
+        // Add this new animation
+        "spin-slow": "spin-slow 20s linear infinite",
+        // Add flip animations
+        "flip": "flip 0.6s ease-out forwards",
+        "flip-reverse": "flip-reverse 0.6s ease-out forwards",
+      },
+      // Add these new utility classes for 3D effects
+      perspective: {
+        '100': '100px',
+        '200': '200px',
+        '300': '300px',
+        '400': '400px',
+        '500': '500px',
+        '600': '600px',
+        '700': '700px',
+        '800': '800px',
+        '900': '900px',
+        '1000': '1000px',
+        'none': 'none',
+      },
+      perspectiveOrigin: {
+        'center': 'center',
+        'top': 'top',
+        'top-right': 'top right',
+        'right': 'right',
+        'bottom-right': 'bottom right',
+        'bottom': 'bottom',
+        'bottom-left': 'bottom left',
+        'left': 'left',
+        'top-left': 'top left',
+      },
+      transformStyle: {
+        'flat': 'flat',
+        'preserve-3d': 'preserve-3d',
+      },
+      backfaceVisibility: {
+        'visible': 'visible',
+        'hidden': 'hidden',
+      },
+      rotate: {
+        'y-90': 'rotateY(90deg)',
+        'y-180': 'rotateY(180deg)',
+        'y-270': 'rotateY(270deg)',
       },
     },
   },
