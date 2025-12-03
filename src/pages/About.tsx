@@ -4,6 +4,7 @@ import { SkillBar } from '@/components/SkillBar';
 import { Download, Eye } from 'lucide-react';
 import resumePdf from '@/assets/Updated resume.pdf';
 import aboutPhoto from '@/assets/about-photo.jpeg';
+import { FlipCard } from '@/components/FlipCard';
 
 const skills = [
   { name: 'HTML', percentage: 95 },
@@ -72,20 +73,19 @@ const About = () => {
           className="mb-16"
         >
           <div className="glass-effect p-6 md:p-8 rounded-2xl">
-            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+          <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="flex-shrink-0"
+                className="w-full lg:w-1/2 flex-shrink-0"
               >
-                <img 
-                  src={aboutPhoto} 
-                  alt="Toluwani Moses Bakare" 
-                  className="w-48 h-64 md:w-56 md:h-72 object-cover rounded-xl shadow-lg ring-2 ring-primary/30"
+                <FlipCard 
+                  backImage={aboutPhoto} 
+                  alt="Toluwani Moses Bakare"
                 />
               </motion.div>
-              <div>
+              <div className="lg:w-1/2">
                 <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">My Story</h2>
                 <div className="space-y-5 md:space-y-4 font-body text-foreground leading-relaxed text-sm md:text-base">
                   <p>
