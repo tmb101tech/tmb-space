@@ -44,12 +44,12 @@ const Reviews = () => {
     try {
       setIsLoading(true);
       const { data, error } = await supabase
-        .from('reviews')
+        .from('reviews' as any)
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setReviews(data || []);
+      setReviews((data as unknown as Review[]) || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
       toast({
@@ -95,7 +95,7 @@ const Reviews = () => {
       };
 
       const { error } = await supabase
-        .from('reviews')
+        .from('reviews' as any)
         .insert([reviewData]);
 
       if (error) throw error;

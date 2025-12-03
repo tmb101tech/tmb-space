@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { SkillBar } from '@/components/SkillBar';
 import { Download, Eye } from 'lucide-react';
 import resumePdf from '@/assets/Updated resume.pdf';
+import aboutPhoto from '@/assets/about-photo.jpeg';
 
 const skills = [
   { name: 'HTML', percentage: 95 },
@@ -71,30 +72,46 @@ const About = () => {
           className="mb-16"
         >
           <div className="glass-effect p-6 md:p-8 rounded-2xl">
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">My Story</h2>
-            <div className="space-y-5 md:space-y-4 font-body text-foreground leading-relaxed text-sm md:text-base">
-              <p>
-                Hello! I'm Toluwani Moses Bakare, a passionate Full Stack Developer and Brand Designer 
-                based in Lagos, Nigeria. I help businesses and individuals stand out online by creating 
-                custom websites and brand identities that establish your digital presence and drive growth.
-              </p>
-              <p>
-                Whether you're a startup looking to build your business identity online or an established 
-                company wanting to grow on digital platforms, I provide tailored solutions that help your 
-                business stand out in today's competitive digital landscape. From simple landing pages to 
-                complex e-commerce platforms, I build websites that work for your business strategy.
-              </p>
-              <p>
-                As a Christian and student at Lagos University of Science and Technology, my faith guides 
-                my work ethic and inspires me to approach every project with integrity, excellence, and a 
-                servant's heart. I believe that technology, when used purposefully, can be a powerful tool 
-                for positive impact and business growth.
-              </p>
-              <p>
-                My services help businesses establish their online identity through professional web 
-                development, strategic brand design, and effective social media management. Let's work 
-                together to help your business stand out and thrive online!
-              </p>
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="flex-shrink-0"
+              >
+                <img 
+                  src={aboutPhoto} 
+                  alt="Toluwani Moses Bakare" 
+                  className="w-48 h-64 md:w-56 md:h-72 object-cover rounded-xl shadow-lg ring-2 ring-primary/30"
+                />
+              </motion.div>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">My Story</h2>
+                <div className="space-y-5 md:space-y-4 font-body text-foreground leading-relaxed text-sm md:text-base">
+                  <p>
+                    Hello! I'm Toluwani Moses Bakare, a passionate Full Stack Developer and Brand Designer 
+                    based in Lagos, Nigeria. I help businesses and individuals stand out online by creating 
+                    custom websites and brand identities that establish your digital presence and drive growth.
+                  </p>
+                  <p>
+                    Whether you're a startup looking to build your business identity online or an established 
+                    company wanting to grow on digital platforms, I provide tailored solutions that help your 
+                    business stand out in today's competitive digital landscape. From simple landing pages to 
+                    complex e-commerce platforms, I build websites that work for your business strategy.
+                  </p>
+                  <p>
+                    As a Christian and student at Lagos University of Science and Technology, my faith guides 
+                    my work ethic and inspires me to approach every project with integrity, excellence, and a 
+                    servant's heart. I believe that technology, when used purposefully, can be a powerful tool 
+                    for positive impact and business growth.
+                  </p>
+                  <p>
+                    My services help businesses establish their online identity through professional web 
+                    development, strategic brand design, and effective social media management. Let's work 
+                    together to help your business stand out and thrive online!
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
