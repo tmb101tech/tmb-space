@@ -79,7 +79,7 @@ const About = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="float-left w-full sm:w-1/2 mr-0 sm:mr-6 mb-4"
+                className="float-right w-full sm:w-1/2 ml-0 sm:ml-6 mb-4"
               >
                 <FlipCard 
                   backImage={aboutPhoto} 
