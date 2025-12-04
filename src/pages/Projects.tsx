@@ -146,7 +146,12 @@ const Projects = () => {
   const webProjects = projects.filter(p => p.type === 'web');
   const graphicsProjects = projects.filter(p => p.type === 'graphics');
   const videoProjects = projects.filter(p => p.type === 'video');
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+
+  const handleCardClick = (index: number) => {
+    setFlippedCard(flippedCard === index ? null : index);
+  };
 
   const handlePreviewClick = (imageUrl: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -154,8 +159,8 @@ const Projects = () => {
   };
 
   const renderProjectCard = (project: typeof projects[0], index: number) => {
-    const projectNumber = index + 1;
-    const previewImage = project.image || `project_${projectNumber}.jpg`;
+    const previewImage = project.image;
+    const isFlipped = flippedCard === index;
 
     return (
       <motion.div
@@ -164,95 +169,149 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1 }}
         viewport={{ once: true }}
+        className="perspective-1000"
       >
-        <Card className="glass-effect overflow-hidden h-full flex flex-col hover:glow-ring transition-bounce group">
-          {/* Preview Image Section */}
-          <div 
-            className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 cursor-pointer"
-            onClick={(e) => handlePreviewClick(previewImage, e)}
+        <div className="relative min-h-[580px]">
+          <motion.div
+            className="absolute inset-0 w-full h-full cursor-pointer"
+            animate={{ rotateY: isFlipped ? 180 : 0 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+            onClick={() => handleCardClick(index)}
+            style={{ transformStyle: 'preserve-3d' }}
           >
-            <img 
-              src={previewImage} 
-              alt={`${project.title} Preview`}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
-            <div className="hidden w-full h-full flex-col items-center justify-center p-4 text-center absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 flex items-center justify-center mb-2">
-                <Eye className="w-8 h-8 text-primary" />
-              </div>
-              <p className="text-xs font-body text-muted-foreground">Preview unavailable</p>
+            {/* Front of Card - Tap to Preview */}
+            <div
+              className="absolute inset-0 w-full h-full backface-hidden"
+              style={{ backfaceVisibility: 'hidden' }}
+            >
+              <Card className="glass-effect overflow-hidden h-full flex flex-col hover:glow-ring transition-bounce group">
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20">
+                  <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center">
+                    <div className="relative">
+                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <Eye className="w-10 h-10 text-primary" />
+                      </div>
+                      <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-spin-slow" />
+                    </div>
+                    <p className="text-sm font-body text-primary font-semibold uppercase tracking-wider">
+                      Tap to Preview
+                    </p>
+                    <p className="text-xs font-body text-muted-foreground mt-2">
+                      Click to see project screenshot
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                      <span className="text-xs font-body text-primary font-semibold uppercase">
+                        {project.category}
+                      </span>
+                      {project.subcategory && (
+                        <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
+                          {project.subcategory}
+                        </span>
+                      )}
+                      <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                        {project.year}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="font-body text-muted-foreground mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <Button asChild size="sm" variant="outline" className="flex-1" onClick={(e) => e.stopPropagation()}>
+                      <a
+                        href={project.live || '#'}
+                        target={project.live ? '_blank' : undefined}
+                        rel={project.live ? 'noopener noreferrer' : undefined}
+                      >
+                        <ExternalLink className="mr-2" size={14} />
+                        View Live
+                      </a>
+                    </Button>
+                    {project.type === 'web' && project.github && (
+                      <Button asChild size="sm" variant="outline" onClick={(e) => e.stopPropagation()}>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github size={14} />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </Card>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-              <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Eye className="w-4 h-4 text-primary" />
-                <span className="text-sm font-body text-primary font-semibold">Click to enlarge</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="p-6 flex-1 flex flex-col">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 flex-wrap mb-2">
-                <span className="text-xs font-body text-primary font-semibold uppercase">
-                  {project.category}
-                </span>
-                {project.subcategory && (
-                  <span className="text-xs font-body px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
-                    {project.subcategory}
-                  </span>
-                )}
-                <span className="text-xs font-body px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                  {project.year}
-                </span>
-              </div>
-              <h3 className="text-2xl font-heading font-semibold mt-2 mb-3">
-                {project.title}
-              </h3>
-              <p className="font-body text-muted-foreground mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs font-body px-3 py-1 bg-primary/10 text-primary rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="flex gap-2 mt-4">
-              <Button asChild size="sm" variant="outline" className="flex-1">
-                <a
-                  href={project.live || '#'}
-                  target={project.live ? '_blank' : undefined}
-                  rel={project.live ? 'noopener noreferrer' : undefined}
-                  aria-label={`View ${project.title} live`}
+
+            {/* Back of Card - Project Image */}
+            <div
+              className="absolute inset-0 w-full h-full backface-hidden"
+              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+            >
+              <Card className="glass-effect overflow-hidden h-full flex flex-col hover:glow-ring transition-bounce">
+                <div 
+                  className="relative h-64 overflow-hidden cursor-pointer"
+                  onClick={(e) => previewImage && handlePreviewClick(previewImage, e)}
                 >
-                  <ExternalLink className="mr-2" size={14} />
-                  View Live
-                </a>
-              </Button>
-              {project.type === 'web' && project.github && (
-                <Button asChild size="sm" variant="outline">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} source on GitHub`}
+                  {previewImage ? (
+                    <>
+                      <img 
+                        src={previewImage} 
+                        alt={`${project.title} Preview`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                        <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full">
+                          <Eye className="w-4 h-4 text-primary" />
+                          <span className="text-sm font-body text-primary font-semibold">Click to enlarge</span>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20">
+                      <p className="text-muted-foreground">No preview available</p>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-heading font-semibold mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm font-body text-muted-foreground mb-4">
+                    Project Preview
+                  </p>
+                  <div className="flex-1" />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFlippedCard(null);
+                    }}
+                    className="w-full"
                   >
-                    <Github size={14} />
-                  </a>
-                </Button>
-              )}
+                    Back to Details
+                  </Button>
+                </div>
+              </Card>
             </div>
-          </div>
-        </Card>
+          </motion.div>
+        </div>
       </motion.div>
     );
   };
@@ -337,7 +396,7 @@ const Projects = () => {
             Here are some web applications and websites I built showcasing modern design and functionality either for fun or other clients
           </p>
           <p className="text-sm font-body text-primary">
-            Click on any project image to view fullscreen
+            Tap any card to see the project preview
           </p>
         </motion.div>
 
