@@ -153,9 +153,9 @@ export const SessionBooking = () => {
   return (
     <Card className="glass-effect p-8">
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-heading font-bold mb-2">Book a Session with TMB</h2>
+        <h2 className="text-3xl font-heading font-bold mb-2">Book a FREE Session with TMB</h2>
         <p className="text-muted-foreground font-body">
-          Schedule a 30-minute consultation session (Mon-Fri, 9am-9pm)
+          Schedule a 30-minute consultation session (Mon-Fri, 9am-9pm WAT)
         </p>
       </div>
 
