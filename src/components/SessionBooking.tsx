@@ -151,7 +151,7 @@ export const SessionBooking = () => {
   };
 
   return (
-    <Card className="glass-effect p-8">
+    <Card className="glass-effect p-4 sm:p-8 overflow-hidden">
       <div className="text-center mb-6">
         <h2 className="text-3xl font-heading font-bold mb-2">Book a FREE Session with TMB</h2>
         <p className="text-muted-foreground font-body">
@@ -194,7 +194,7 @@ export const SessionBooking = () => {
               <CalendarIcon className="w-4 h-4" />
               Select Date *
             </Label>
-            <div className="border rounded-lg p-2">
+            <div className="border rounded-lg p-2 overflow-x-auto">
               <Calendar
                 mode="single"
                 selected={selectedDate}
@@ -202,7 +202,7 @@ export const SessionBooking = () => {
                 disabled={(date) =>
                   date < new Date() || isWeekend(date)
                 }
-                className={cn("pointer-events-auto")}
+                className={cn("pointer-events-auto w-full min-w-0")}
                 fromDate={new Date()}
                 toDate={addDays(new Date(), 60)}
               />
@@ -250,8 +250,8 @@ export const SessionBooking = () => {
         </div>
 
         {selectedDate && selectedTime && (
-          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-            <p className="font-body text-sm">
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 overflow-hidden">
+            <p className="font-body text-sm break-words">
               <strong>Selected:</strong> {format(selectedDate, 'PPP')} at {selectedTime}
             </p>
           </div>

@@ -19,6 +19,8 @@ interface Review {
   review: string;
   created_at: string;
   is_anonymous: boolean;
+  company?: string;
+  role?: string;
 }
 
 const Reviews = () => {
@@ -32,6 +34,8 @@ const Reviews = () => {
     rating: 0,
     review: '',
     is_anonymous: false,
+    company: '',
+    role: '',
   });
   const [hoveredRating, setHoveredRating] = useState(0);
 
@@ -92,6 +96,8 @@ const Reviews = () => {
         rating: formData.rating,
         review: formData.review,
         is_anonymous: formData.is_anonymous,
+        company: formData.company.trim() || null,
+        role: formData.role.trim() || null,
       };
 
       const { error } = await supabase
@@ -112,6 +118,8 @@ const Reviews = () => {
         rating: 0,
         review: '',
         is_anonymous: false,
+        company: '',
+        role: '',
       });
 
       // Refresh reviews list
@@ -214,7 +222,7 @@ const Reviews = () => {
           </p>
         </motion.div>
 
-        {/* Reviews Display Section */}
+        {/* Reviews Display Section - Horizontal Scroll */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -222,26 +230,27 @@ const Reviews = () => {
           className="mb-12"
         >
           {isLoading ? (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
               {[1, 2, 3, 4].map((i) => (
-                <Card key={i} className="glass-effect p-6 animate-pulse">
-                  <div className="h-4 bg-gray-700 rounded w-1/4 mb-4"></div>
-                  <div className="h-6 bg-gray-700 rounded w-1/2 mb-4"></div>
-                  <div className="h-24 bg-gray-700 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-700 rounded w-1/3"></div>
+                <Card key={i} className="glass-effect p-6 animate-pulse min-w-[320px] flex-shrink-0">
+                  <div className="h-4 bg-muted rounded w-1/4 mb-4"></div>
+                  <div className="h-6 bg-muted rounded w-1/2 mb-4"></div>
+                  <div className="h-24 bg-muted rounded mb-4"></div>
+                  <div className="h-4 bg-muted rounded w-1/3"></div>
                 </Card>
               ))}
             </div>
           ) : reviews.length > 0 ? (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {reviews.map((review) => (
                 <motion.div
                   key={review.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="snap-start"
                 >
-                  <Card className="glass-effect p-6 hover:scale-105 transition-bounce cursor-pointer">
+                  <Card className="glass-effect p-6 hover:scale-105 transition-bounce cursor-pointer min-w-[320px] sm:min-w-[380px] flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         {review.is_anonymous ? (
@@ -255,14 +264,19 @@ const Reviews = () => {
                         )}
                         <div>
                           <p className="font-body font-semibold">{review.name}</p>
-                          <p className="text-sm font-body text-muted-foreground">
+                          {(review.role || review.company) && (
+                            <p className="text-sm font-body text-primary">
+                              {review.role}{review.role && review.company && ' at '}{review.company}
+                            </p>
+                          )}
+                          <p className="text-xs font-body text-muted-foreground">
                             {review.project_type}
                           </p>
                         </div>
                       </div>
                       <StarRating rating={review.rating} />
                     </div>
-                    <p className="font-body text-muted-foreground mb-4">
+                    <p className="font-body text-muted-foreground mb-4 line-clamp-4">
                       "{review.review}"
                     </p>
                     <p className="text-sm font-body text-muted-foreground/60">
@@ -282,6 +296,11 @@ const Reviews = () => {
                 No reviews yet. Be the first to share your experience!
               </p>
             </Card>
+          )}
+          {reviews.length > 0 && (
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              ← Swipe to see more reviews →
+            </p>
           )}
         </motion.div>
 
@@ -329,6 +348,31 @@ const Reviews = () => {
                 </div>
               </div>
 
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="company" className="font-body">Company / Business</Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Your company or business name"
+                    className="mt-2"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="role" className="font-body">Your Role</Label>
+                  <Input
+                    id="role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    placeholder="e.g. CEO, Founder, Manager"
+                    className="mt-2"
+                  />
+                </div>
+              </div>
+
               <div>
                 <Label className="font-body mb-2 block">Rating *</Label>
                 <StarRating 
@@ -350,7 +394,7 @@ const Reviews = () => {
                   onChange={handleChange}
                   required
                   rows={4}
-                  placeholder="Tell us about your experience working together..."
+                  placeholder="Tell me about your experience working together..."
                   className="mt-2"
                 />
               </div>

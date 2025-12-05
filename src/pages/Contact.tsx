@@ -234,7 +234,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={3}
-                  placeholder="Tell us about your brand, business, or project..."
+                  placeholder="Tell me about your brand, business, or project..."
                   className="mt-2"
                 />
               </div>
@@ -254,7 +254,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <Label htmlFor="services" className="font-body">Which of our services do you need? *</Label>
+                <Label htmlFor="services" className="font-body">Which of my services do you need? *</Label>
                 <Select
                   value={formData.services}
                   onValueChange={(value) => setFormData(prev => ({ ...prev, services: value }))}
