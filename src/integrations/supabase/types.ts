@@ -100,6 +100,7 @@ export type Database = {
       }
       reviews: {
         Row: {
+          company: string | null
           created_at: string
           id: string
           is_anonymous: boolean
@@ -107,8 +108,10 @@ export type Database = {
           project_type: string
           rating: number
           review: string
+          role: string | null
         }
         Insert: {
+          company?: string | null
           created_at?: string
           id?: string
           is_anonymous?: boolean
@@ -116,8 +119,10 @@ export type Database = {
           project_type: string
           rating: number
           review: string
+          role?: string | null
         }
         Update: {
+          company?: string | null
           created_at?: string
           id?: string
           is_anonymous?: boolean
@@ -125,6 +130,7 @@ export type Database = {
           project_type?: string
           rating?: number
           review?: string
+          role?: string | null
         }
         Relationships: []
       }

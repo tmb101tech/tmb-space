@@ -10,13 +10,58 @@ import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
 import { FAQ } from '@/components/FAQ';
-import { ArrowRight, Code, Instagram, Mail, Download, Eye } from 'lucide-react';
+import { ArrowRight, Code, Instagram, Mail, Download, Eye, Star, User } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
 import resumePdf from '@/assets/Updated resume.pdf';
+import { useState, useEffect } from 'react';
+
+interface Review {
+  id: string;
+  name: string;
+  project_type: string;
+  rating: number;
+  review: string;
+  created_at: string;
+  is_anonymous: boolean;
+  company?: string;
+  role?: string;
+}
 
 const Index = () => {
   const { toast } = useToast();
+  const [recentReviews, setRecentReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    const fetchRecentReviews = async () => {
+      const { data, error } = await supabase
+        .from('reviews' as any)
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(3);
+      
+      if (!error && data) {
+        setRecentReviews(data as unknown as Review[]);
+      }
+    };
+    fetchRecentReviews();
+  }, []);
+
+  const StarRating = ({ rating }: { rating: number }) => (
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`w-4 h-4 ${
+            star <= rating
+              ? 'fill-yellow-400 text-yellow-400'
+              : 'fill-gray-200 text-gray-200'
+          }`}
+        />
+      ))}
+    </div>
+  );
+
   const skills = [
     { name: 'HTML', percentage: 95 },
     { name: 'CSS', percentage: 90 },
@@ -283,6 +328,82 @@ const Index = () => {
           </Link>
         </motion.div>
       </section>
+
+      {/* Recent Reviews Section */}
+      {recentReviews.length > 0 && (
+        <section className="container mx-auto px-4 py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-heading font-bold mb-4">What My Clients Say</h2>
+            <p className="text-muted-foreground font-body">
+              Recent reviews from satisfied clients
+            </p>
+          </motion.div>
+
+          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {recentReviews.map((review, index) => (
+              <motion.div
+                key={review.id}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="snap-start"
+              >
+                <Card className="glass-effect p-6 hover:scale-105 transition-bounce cursor-pointer min-w-[320px] sm:min-w-[380px] flex-shrink-0">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      {review.is_anonymous ? (
+                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                          <User className="w-5 h-5 text-primary" />
+                        </div>
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-purple-500 flex items-center justify-center text-white font-bold">
+                          {review.name.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-body font-semibold">{review.name}</p>
+                        {(review.role || review.company) && (
+                          <p className="text-sm font-body text-primary">
+                            {review.role}{review.role && review.company && ' at '}{review.company}
+                          </p>
+                        )}
+                        <p className="text-xs font-body text-muted-foreground">
+                          {review.project_type}
+                        </p>
+                      </div>
+                    </div>
+                    <StarRating rating={review.rating} />
+                  </div>
+                  <p className="font-body text-muted-foreground mb-4 line-clamp-3">
+                    "{review.review}"
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <Link to="/reviews">
+              <Button size="lg" variant="outline" className="glass-effect">
+                View All Reviews <ArrowRight className="ml-2" size={18} />
+              </Button>
+            </Link>
+          </motion.div>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <FAQ />
