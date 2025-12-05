@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CustomCursor } from "@/components/CustomCursor";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Index from "./pages/Index";
@@ -22,6 +23,7 @@ const queryClient = new QueryClient();
 
 const Layout = () => (
   <div className="min-h-screen w-full">
+    <ScrollToTop />
     <Header />
     <FloatingWhatsApp />
     <Routes>

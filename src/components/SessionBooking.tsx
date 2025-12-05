@@ -137,7 +137,7 @@ export const SessionBooking = () => {
       }
     } else {
       toast({
-        title: 'Session Booked! 🎉',
+        title: 'Session Booked!',
         description: `Your session on ${format(selectedDate, 'PPP')} at ${selectedTime} has been confirmed. More details will be sent to ${contact}.`,
       });
 
