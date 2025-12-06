@@ -18,7 +18,7 @@ Deno.serve(async (req) => {
       auth: { autoRefreshToken: false, persistSession: false }
     })
 
-    const adminEmail = 'admin@tmb.com'
+    const adminEmail = 'admin@tmb.it.com'
     const adminPassword = 'administrator@123'
 
     // Check if admin already exists
