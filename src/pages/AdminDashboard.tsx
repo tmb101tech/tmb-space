@@ -7,12 +7,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { LogOut, Mail, Calendar, MessageSquare, Users } from 'lucide-react';
+import { LogOut, Calendar, MessageSquare, Users, Star } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
   const [newsletters, setNewsletters] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -30,13 +31,12 @@ const AdminDashboard = () => {
       return;
     }
 
-    // Verify admin role
     const { data: roleData, error } = await supabase
       .from('user_roles')
       .select('role')
       .eq('user_id', session.user.id)
       .eq('role', 'admin')
-      .single();
+      .maybeSingle();
 
     if (error || !roleData) {
       toast({
@@ -52,15 +52,17 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const [bookingsRes, contactsRes, newslettersRes] = await Promise.all([
+      const [bookingsRes, contactsRes, newslettersRes, reviewsRes] = await Promise.all([
         supabase.from('bookings').select('*').order('created_at', { ascending: false }),
         supabase.from('contact_submissions').select('*').order('submitted_at', { ascending: false }),
         supabase.from('newsletter_subscriptions').select('*').order('subscribed_at', { ascending: false }),
+        supabase.from('reviews').select('*').order('created_at', { ascending: false }),
       ]);
 
       if (bookingsRes.data) setBookings(bookingsRes.data);
       if (contactsRes.data) setContacts(contactsRes.data);
       if (newslettersRes.data) setNewsletters(newslettersRes.data);
+      if (reviewsRes.data) setReviews(reviewsRes.data);
     } catch (error) {
       console.error('Error fetching data:', error);
       toast({
@@ -76,6 +78,11 @@ const AdminDashboard = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/admin/login');
+  };
+
+  const copyEmail = (email: string) => {
+    navigator.clipboard.writeText(email);
+    toast({ title: 'Copied', description: 'Email copied to clipboard' });
   };
 
   if (isLoading) {
@@ -107,7 +114,7 @@ const AdminDashboard = () => {
           </Button>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="glass-effect p-6">
             <div className="flex items-center gap-4">
               <div className="p-3 rounded-full bg-primary/10">
@@ -126,7 +133,7 @@ const AdminDashboard = () => {
                 <MessageSquare className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Contact Submissions</p>
+                <p className="text-sm text-muted-foreground">Contacts</p>
                 <p className="text-3xl font-bold">{contacts.length}</p>
               </div>
             </div>
@@ -138,8 +145,20 @@ const AdminDashboard = () => {
                 <Users className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Newsletter Subscribers</p>
+                <p className="text-sm text-muted-foreground">Subscribers</p>
                 <p className="text-3xl font-bold">{newsletters.length}</p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="glass-effect p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Star className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Reviews</p>
+                <p className="text-3xl font-bold">{reviews.length}</p>
               </div>
             </div>
           </Card>
@@ -147,10 +166,11 @@ const AdminDashboard = () => {
 
         <Card className="glass-effect p-6">
           <Tabs defaultValue="bookings">
-            <TabsList className="mb-6">
+            <TabsList className="mb-6 flex-wrap">
               <TabsTrigger value="bookings">Bookings</TabsTrigger>
-              <TabsTrigger value="contacts">Contact Forms</TabsTrigger>
+              <TabsTrigger value="contacts">Contacts</TabsTrigger>
               <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+              <TabsTrigger value="reviews">Reviews</TabsTrigger>
             </TabsList>
 
             <TabsContent value="bookings">
@@ -214,6 +234,7 @@ const AdminDashboard = () => {
                     <TableRow>
                       <TableHead>Email</TableHead>
                       <TableHead>Subscribed At</TableHead>
+                      <TableHead>Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -221,6 +242,51 @@ const AdminDashboard = () => {
                       <TableRow key={sub.id}>
                         <TableCell className="font-medium">{sub.email}</TableCell>
                         <TableCell>{new Date(sub.subscribed_at).toLocaleString()}</TableCell>
+                        <TableCell>
+                          <Button size="sm" variant="outline" onClick={() => copyEmail(sub.email)}>
+                            Copy Email
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="reviews">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Company</TableHead>
+                      <TableHead>Role</TableHead>
+                      <TableHead>Rating</TableHead>
+                      <TableHead>Review</TableHead>
+                      <TableHead>Created At</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {reviews.map((review) => (
+                      <TableRow key={review.id}>
+                        <TableCell className="font-medium">
+                          {review.is_anonymous ? 'Anonymous' : review.name}
+                        </TableCell>
+                        <TableCell>{review.company || '-'}</TableCell>
+                        <TableCell>{review.role || '-'}</TableCell>
+                        <TableCell>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted'}`}
+                              />
+                            ))}
+                          </div>
+                        </TableCell>
+                        <TableCell className="max-w-xs truncate">{review.review}</TableCell>
+                        <TableCell>{new Date(review.created_at).toLocaleString()}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
