@@ -29,6 +29,10 @@ const faqs = [
     answer: "I build different types of websites tailored to your needs - from simple landing pages and portfolios to complex e-commerce platforms and custom web applications. Every website I create helps businesses and individuals establish their identity online and grow their digital presence. Whether you're starting fresh or scaling up, I've got you covered."
   },
   {
+    question: "What does TMB stand for?",
+    answer: "TMB is the initials of my name Toluwani Moses Bakare. It's a personal brand that reflects my identity as a web developer and designer. TMB represents my commitment to delivering quality digital solutions that help businesses and individuals establish their online presence."
+  },
+  {
     question: "What else do you do for fun?",
     answer: "Beyond coding and design, I'm passionate about my faith as a Christian, which guides my work ethic and values. I also enjoy exploring new technologies, staying updated with the latest web trends, and finding creative ways to solve problems. I believe in continuous growth - both personally and professionally."
   },
