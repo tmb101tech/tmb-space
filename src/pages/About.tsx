@@ -5,6 +5,7 @@ import { Download, Eye } from 'lucide-react';
 import resumePdf from '@/assets/Updated resume.pdf';
 import aboutPhoto from '@/assets/about-photo.jpeg';
 import { FlipCard } from '@/components/FlipCard';
+import { ResumeViewer } from '@/components/ResumeViewer';
 
 const skills = [
   { name: 'HTML', percentage: 95 },
@@ -127,12 +128,14 @@ const About = () => {
               to grow your digital presence - let's collaborate and bring your vision to life.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button asChild size="lg" variant="outline" className="gap-2">
-                <a href={resumePdf} target="_blank" rel="noopener noreferrer">
-                  <Eye size={20} />
-                  View Resume
-                </a>
-              </Button>
+              <ResumeViewer 
+                trigger={
+                  <Button size="lg" variant="outline" className="gap-2">
+                    <Eye size={20} />
+                    View Resume
+                  </Button>
+                }
+              />
               <Button asChild size="lg" className="gap-2 glow-ring">
                 <a href={resumePdf} download>
                   <Download size={20} />

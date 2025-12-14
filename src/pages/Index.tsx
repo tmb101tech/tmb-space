@@ -10,6 +10,8 @@ import { SkillBar } from '@/components/SkillBar';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import TechMarquee from '@/components/TechMarquee';
 import { FAQ } from '@/components/FAQ';
+import { SocialFollowPopup } from '@/components/SocialFollowPopup';
+import { ResumeViewer } from '@/components/ResumeViewer';
 import { ArrowRight, Code, Instagram, Mail, Download, Eye, Star, User } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import heroPortrait from '@/assets/hero-portrait.jpeg';
@@ -78,6 +80,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <SocialFollowPopup />
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-24">
         <div className="absolute inset-0 opacity-30">
           {[...Array(20)].map((_, i) => (
@@ -182,12 +185,14 @@ const Index = () => {
             transition={{ delay: 1.4 }}
             className="flex gap-4 justify-center flex-wrap"
           >
-            <Button asChild size="lg" variant="outline" className="gap-2">
-              <a href={resumePdf} target="_blank" rel="noopener noreferrer">
-                <Eye size={20} />
-                View Resume
-              </a>
-            </Button>
+            <ResumeViewer 
+              trigger={
+                <Button size="lg" variant="outline" className="gap-2">
+                  <Eye size={20} />
+                  View Resume
+                </Button>
+              }
+            />
             <Button asChild size="lg" variant="outline" className="gap-2">
               <a href={resumePdf} download>
                 <Download size={20} />

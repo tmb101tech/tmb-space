@@ -133,11 +133,11 @@ All colors MUST be HSL.
 
 @layer utilities {
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+    @apply bg-card/80 backdrop-blur-lg border border-border;
   }
   
   .dark .glass-effect {
-    @apply bg-black/20 backdrop-blur-lg border border-white/10;
+    @apply bg-card/60 backdrop-blur-lg border border-border/50;
   }
   
   .soft-glow {
