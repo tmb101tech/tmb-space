@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { LogOut, Calendar, MessageSquare, Users, Star } from 'lucide-react';
+import { LogOut, Calendar, MessageSquare, Users, Star, Trash2 } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState<any[]>([]);
@@ -83,6 +83,17 @@ const AdminDashboard = () => {
   const copyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
     toast({ title: 'Copied', description: 'Email copied to clipboard' });
+  };
+
+  const deleteReview = async (id: string) => {
+    try {
+      const { error } = await supabase.from('reviews').delete().eq('id', id);
+      if (error) throw error;
+      setReviews(reviews.filter(r => r.id !== id));
+      toast({ title: 'Deleted', description: 'Review has been removed' });
+    } catch (error: any) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    }
   };
 
   if (isLoading) {
@@ -265,6 +276,7 @@ const AdminDashboard = () => {
                       <TableHead>Rating</TableHead>
                       <TableHead>Review</TableHead>
                       <TableHead>Created At</TableHead>
+                      <TableHead>Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -287,6 +299,17 @@ const AdminDashboard = () => {
                         </TableCell>
                         <TableCell className="max-w-xs truncate">{review.review}</TableCell>
                         <TableCell>{new Date(review.created_at).toLocaleString()}</TableCell>
+                        <TableCell>
+                          <Button 
+                            size="sm" 
+                            variant="destructive" 
+                            onClick={() => deleteReview(review.id)}
+                            className="gap-1"
+                          >
+                            <Trash2 size={14} />
+                            Delete
+                          </Button>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
