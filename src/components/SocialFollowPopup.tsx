@@ -1,32 +1,38 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { FaInstagram, FaTwitter, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, Linkedin, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 
 const socials = [
+  {
+    name: 'Facebook',
+    icon: FaFacebook,
+    url: 'https://www.facebook.com/share/1aBZC5KPBt/?mibextid=wwXIfr',
+    color: 'bg-blue-600'
+  },
   { 
     name: 'Instagram', 
     icon: FaInstagram, 
-    url: 'https://instagram.com/tmb.it.com',
+    url: 'https://instagram.com/official.tmb01',
     color: 'bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400'
   },
   { 
-    name: 'Twitter', 
-    icon: FaTwitter, 
-    url: 'https://twitter.com/tmb_it_com',
-    color: 'bg-sky-500'
+    name: 'X', 
+    icon: X, 
+    url: 'https://x.com/official_tmb01',
+    color: 'dark:bg-white dark:text-black bg-sky-500'
   },
   { 
     name: 'LinkedIn', 
     icon: FaLinkedin, 
-    url: 'https://linkedin.com/in/toluwanimosesbakare',
+    url: 'https://linkedin.com/in/toluwani-bakare-49910324a',
     color: 'bg-blue-600'
   },
   { 
     name: 'GitHub', 
     icon: FaGithub, 
-    url: 'https://github.com/toluwanimosesbakare',
+    url: 'https://github.com/tmb101tech',
     color: 'bg-gray-800 dark:bg-gray-700'
   },
   { 
@@ -52,8 +58,8 @@ export const SocialFollowPopup = () => {
     const handleScroll = () => {
       const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      // Show popup after scrolling 30%
-      if (scrollPercentage > 30 && !hasShown) {
+      // Show popup after scrolling 20%
+      if (scrollPercentage > 20 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
         sessionStorage.setItem('socialPopupShown', 'true');
