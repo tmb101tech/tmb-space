@@ -1,8 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { FaFacebook, FaInstagram, Linkedin, FaGithub, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import { useLocation } from 'react-router-dom';
+
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <img
+    src="https://cdn.simpleicons.org/x/000000"
+    alt="X"
+    style={{ width: size, height: size }}
+    className="dark:invert"
+  />
+);
 
 const socials = [
   {
@@ -19,9 +29,9 @@ const socials = [
   },
   { 
     name: 'X', 
-    icon: X, 
+    icon: XIcon, 
     url: 'https://x.com/official_tmb01',
-    color: 'dark:bg-white dark:text-black bg-sky-500'
+    color: 'bg-white text-black dark:bg-black dark:text-white'
   },
   { 
     name: 'LinkedIn', 
@@ -46,23 +56,22 @@ const socials = [
 export const SocialFollowPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const location = useLocation();
+
+  // Reset popup state on route change so it can show once per page
+  useEffect(() => {
+    setIsVisible(false);
+    setHasShown(false);
+  }, [location.pathname]);
 
   useEffect(() => {
-    // Check if popup was already shown in this session
-    const shown = sessionStorage.getItem('socialPopupShown');
-    if (shown) {
-      setHasShown(true);
-      return;
-    }
-
     const handleScroll = () => {
       const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      // Show popup after scrolling 20%
-      if (scrollPercentage > 20 && !hasShown) {
+      // Show popup after scrolling 10%
+      if (scrollPercentage > 10 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
-        sessionStorage.setItem('socialPopupShown', 'true');
       }
     };
 
